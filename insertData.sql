@@ -1,7 +1,6 @@
-insert into sr_member(mem_id, mem_email, mem_name, mem_age, mem_nickname, mem_gender) 
-values(0, 'test@test.com', '테스트', '30', 'testNickname', 'f');
-
-delete from sr_room;
+--<<테스트사용자>>
+--insert into sr_member(mem_id, mem_email, mem_name, mem_age, mem_nickname, mem_gender) 
+--values(0, 'test@test.com', '테스트', '30', 'testNickname', 'f');
 
 insert into sr_room values	(seq_sr_room.nextval, 	0,	'고시원 임대합니다',	'서울특별시 용산구 후암동 산1-126',	'1_1.webp,	1_2.webp,	1_3.webp,	1_4.webp,	1_5.webp',	50,	30,	'고시원 임대합니다헬로우 환영합니다 환영해요',	'010-1111-1111',	'2021-01-05'	);
 insert into sr_room values	(seq_sr_room.nextval, 	0,	'쉐어하우스 임대합니다',	'서울특별시 용산구 용산동2가 산5-6',	'2_1.webp,	2_2.webp,	2_3.webp,	2_4.webp,	2_5.webp',	20,	15,	'쉐어하우스 임대합니다 헬로우 환영합니다 환영해요',	'010-1111-1112',	'2021-01-05'	);
