@@ -39,7 +39,7 @@ public class RoomController {
 	@Autowired
 	IRoomService rs;
 	
-	@ResponseBody
+
 	@RequestMapping(value = "/login", method = {RequestMethod.GET,RequestMethod.POST})
 	public String login(Locale locale, Model model,@RequestParam(value = "code") String code) throws Exception{
 		String googleClientId="166602658975-pu0k2i9jimdpkqn99fstlj2vnk2ct6ud.apps.googleusercontent.com";
@@ -87,12 +87,14 @@ public class RoomController {
                 access_token = accessElement.getAsJsonObject().get("access_token").getAsString();
                 tmp = getUserInfo(access_token);
                 JsonElement userInfoElement = jsonParser.parse(tmp);
-                id = userInfoElement.getAsJsonObject().get("id").getAsString();
+                System.out.println("tmp : "+tmp);
+                id = "google "+userInfoElement.getAsJsonObject().get("sub").getAsString();
                 name=userInfoElement.getAsJsonObject().get("name").getAsString();
                 email = userInfoElement.getAsJsonObject().get("email").getAsString();
                 profile_image = userInfoElement.getAsJsonObject().get("picture").getAsString();
                 access_token = createJWTToken(id,name,email);
-            }
+        //        rs.insertMember(id,name,email,profile_image);
+			}
 
 
 		} catch (MalformedURLException e) {
@@ -100,14 +102,16 @@ public class RoomController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "redirect:http://localhost:8080/agreement?token=" + access_token;
+		return "redirect:http://localhost:8081/?token=" + access_token;
+
+
 	}
 	
 	private String getUserInfo(String access_token) {
 		String header="Bearer "+access_token;
 		
 		try {
-			String googleApiURL="https://www.googleapis.com/oauth2/v3/userinfo";
+			String googleApiURL="https://www.googleapis.com/oauth2/v3/tokeninfo";
 			URL url=new URL(googleApiURL);
 			HttpURLConnection con=(HttpURLConnection)url.openConnection();	
 			con.setRequestMethod("GET");
