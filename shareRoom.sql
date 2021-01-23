@@ -24,7 +24,7 @@
 create 	table 	sr_member(	mem_id	 number(6) 	primary key,	
 			mem_email	 varchar2(50) 	not null,	
 			mem_name	 varchar2(20) 	not null,	
-			mem_age	 varchar2(20) 	not null,	
+			mem_age	 varchar2(20),	
 			mem_nickname	 varchar2(15 char) 	not null,	
 			mem_image	 varchar2(30) default 'noProfile.jpg',		
 			mem_gender	 char(1), check(mem_gender in('f', 'm')),
