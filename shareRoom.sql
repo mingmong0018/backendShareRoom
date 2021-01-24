@@ -20,16 +20,16 @@
 --drop sequence seq_sr_tag_option;
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
-
-create 	table 	sr_member(	mem_id	 number(6) 	primary key,	
+select * from sr_member
+create 	table 	sr_member(	mem_id	 varchar2(50) 	primary key,	
 			mem_email	 varchar2(50) 	not null,	
 			mem_name	 varchar2(20) 	not null,	
-			mem_age	 varchar2(20),	
+			mem_age	 number(3)	not null,	
 			mem_nickname	 varchar2(15 char) 	not null,	
-			mem_image	 varchar2(30) default 'noProfile.jpg',		
+			mem_image	 varchar2(200) default 'noProfile.jpg',		
 			mem_gender	 char(1), check(mem_gender in('f', 'm')),
 			mem_confirm	 char(1) 	 default 'n',	check(mem_confirm in('y', 'n')) ,
-			room_indate 	 timestamp 	 default 	sysdate) ;
+			mem_indate 	 timestamp 	 default 	sysdate) ;
 create 	sequence	seq_sr_member	increment by 	1;		
 						
 create 	table 	sr_room(	room_id	 number(6) 	primary key,	

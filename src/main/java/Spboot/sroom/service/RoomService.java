@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Spboot.sroom.dao.IRoomDao;
+import Spboot.sroom.dto.MemberVO;
 
 
 
@@ -12,4 +13,5 @@ public class RoomService implements IRoomService{
 	
 	@Autowired
 	IRoomDao rdao;
+
 }

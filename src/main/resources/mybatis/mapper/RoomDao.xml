@@ -5,5 +5,4 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="Spboot.sroom.dao.IRoomDao">
-
 </mapper>
