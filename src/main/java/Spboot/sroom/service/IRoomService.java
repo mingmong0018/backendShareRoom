@@ -6,4 +6,5 @@ import Spboot.sroom.dto.RoomVO;
 
 public interface IRoomService {
 	List<RoomVO> getAllRoom();
+
 }

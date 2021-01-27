@@ -9,7 +9,6 @@ import Spboot.sroom.dao.IRoomDao;
 import Spboot.sroom.dto.RoomVO;
 
 
-
 @Service
 public class RoomService implements IRoomService{
 	
