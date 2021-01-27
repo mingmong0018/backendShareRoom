@@ -2,6 +2,8 @@
 --insert into sr_member(mem_id, mem_email, mem_name, mem_age, mem_nickname, mem_gender) 
 --values(0, 'test@test.com', '테스트', '30', 'testNickname', 'f');
 
+delete from sr_room
+
 insert into sr_room values	(seq_sr_room.nextval,0,'고시원 임대합니다','서울특별시 용산구 후암동 산1-126','1_1.webp,1_2.webp,1_3.webp,1_4.webp,1_5.webp',50,30,'고시원 임대합니다헬로우 환영합니다 환영해요','010-1111-1111','2021-01-05');
 insert into sr_room values	(seq_sr_room.nextval,0,'쉐어하우스 임대합니다','서울특별시 용산구 용산동2가 산5-6','2_1.webp,2_2.webp,2_3.webp,2_4.webp,2_5.webp',20,15,'쉐어하우스 임대합니다 헬로우 환영합니다 환영해요','010-1111-1112','2021-01-05');
 insert into sr_room values	(seq_sr_room.nextval,0,'고양이를 키워요!','서울특별시 용산구 이태원동 523','3_1.webp,3_2.webp,3_3.webp,3_4.webp,3_5.webp',0,27,'고양이를 키워요! 헬로우 환영합니다 환영해요','010-1111-1113','2021-01-05');
@@ -20,7 +22,7 @@ insert into sr_room values	(seq_sr_room.nextval,0,'깨끗한 투룸 하메구합
 insert into sr_room values	(seq_sr_room.nextval,0,'독방 단기입주 가능','서울특별시 서대문구 홍제동 471','16_1.webp,16_2.webp,16_3.webp,16_4.webp,16_5.webp',0,35,'독방 단기입주 가능 헬로우 환영합니다 환영해요','010-1111-1126','2021-01-05');
 insert into sr_room values	(seq_sr_room.nextval,0,'현대 고시원','서울특별시 종로구 계동 3-2','17_1.webp,17_2.webp,17_3.webp,17_4.webp,17_5.webp',50,29,'현대 고시원 책임집니다 책임져','010-1111-1127','2021-01-05');
 insert into sr_room values	(seq_sr_room.nextval,0,'원룸텔로 가성비 good','서울특별시 종로구 연지동 188-12','18_1.webp,18_2.webp,18_3.webp,18_4.webp,18_5.webp',0,21,'원룸텔로 가성비 good 책임집니다 책임져','010-1111-1128','2021-01-05');
-insert into sr_room values	(seq_sr_room.nextval,0,'즉시 입주 가능한 원룸!','서울특별리 종로구 익선동 78-1','19_1.webp,19_2.webp,19_3.webp,19_4.webp,19_5.jpg',30,25,'즉시 입주 가능한 원룸! 책임집니다 책임져','010-1111-1129','2021-01-05');
+insert into sr_room values	(seq_sr_room.nextval,0,'즉시 입주 가능한 원룸!','서울특별시 종로구 익선동 78-1','19_1.webp,19_2.webp,19_3.webp,19_4.webp,19_5.jpg',30,25,'즉시 입주 가능한 원룸! 책임집니다 책임져','010-1111-1129','2021-01-05');
 insert into sr_room values	(seq_sr_room.nextval,0,'테라스 있는 신축 오피스텔','서울특별시 종로구 홍파동 199','20_1.webp,20_2.webp,20_3.webp,20_4.webp,20_5.webp',35,30,'테라스 있는 신축 오피스텔 책임집니다 책임져','010-1111-1130','2021-01-05');
 insert into sr_room values	(seq_sr_room.nextval,0,'같이 지낼 룸메~ 다 맞춰 드리는 성격입니다.','서울특별시 성북구 보문동1가 128-6','21_1.webp,21_2.webp,21_3.webp,21_4.webp,21_5.webp',10,10,'같이 지낼 룸메~ 다 맞춰 드리는 성격입니다. 책임집니다 책임져','010-1111-1131','2021-01-05');
 insert into sr_room values	(seq_sr_room.nextval,0,'오피스텔 룸메이트 구해요^^','서울특별시 성북구 안암동2가 141-5','22_1.webp,22_2.webp,22_3.webp,22_4.webp,22_5.webp',25,18,'오피스텔 룸메이트 구해요^^ 책임집니다 책임져','010-1111-1132','2021-01-05');
@@ -51,7 +53,7 @@ insert into sr_room values	(seq_sr_room.nextval,0,'룸메나 하메 구해용','
 insert into sr_room values	(seq_sr_room.nextval,0,'원룸.10평.깨끗.조용','서울특별시 동대문구 장안동 405-11','47_1.webp,47_2.webp,47_3.webp,47_4.webp,47_5.webp',0,47,'원룸.10평.깨끗.조용 사생활 지켜드립니다','010-1111-1157','2020-12-21');
 insert into sr_room values	(seq_sr_room.nextval,0,'사람 구합니다','서울특별시 마포구 노고산동 1-39','48_1.webp,48_2.webp,48_3.webp,48_4.webp,48_5.webp',0,57,'사람 구합니다 사생활 지켜드립니다','010-1111-1158','2020-12-21');
 insert into sr_room values	(seq_sr_room.nextval,0,'단기로 지내실분 .단기무보증 가능','서울특별시 마포구 노고산동 1-23','49_1.webp,49_2.webp,49_3.webp,49_4.webp,49_5.webp',70,35,'단기로 지내실분 .단기무보증 가능 사생활 지켜드립니다','010-1111-1159','2020-12-21');
-insert into sr_room values	(seq_sr_room.nextval,0,'여성룸메보증금 50만 월세 25만(2인실)','서울특별시 마포구 창천동 112-25','50_1.webp,50_2.webp,50_3.webp,50_4.webp,50_5.webp',50,25,'여성룸메보증금 50만 월세 25만(2인실) 사생활 지켜드립니다','010-1111-1160','2020-12-21');
+insert into sr_room values	(seq_sr_room.nextval,0,'여성룸메보증금 50만 월세 25만(2인실)','서울특별시 서대문구 창천동 229','50_1.webp,50_2.webp,50_3.webp,50_4.webp,50_5.webp',50,25,'여성룸메보증금 50만 월세 25만(2인실) 사생활 지켜드립니다','010-1111-1160','2020-12-21');
 insert into sr_room values	(seq_sr_room.nextval,0,'이태원역 도보 2분 넓고 깨끗한 방','서울특별시 용산구 이태원동 135-50','51_1.jpg,51_2.jpg,51_3.jpg,51_4.jpg,51_5.jpg',50,44,'* 풀옵션이며, 간단한 짐만 가져오셔도 생활에 전혀 문제가 없습니다.
 * 객실들은 건물의 조용한 곳에 위치하여 편하게 지내실수 있습니다.
 * 남산 공원과 한강과도 매우 가까워 운동하시기에도 최적의 조건입니다.','010-1111-1161','2020-12-21');
@@ -72,7 +74,7 @@ insert into sr_room values	(seq_sr_room.nextval,0,'숭실대 근처 룸메이트
 insert into sr_room values	(seq_sr_room.nextval,0,'중앙대, 흑석역 5분거리 룸쉐어','서울특별시 동작구 흑석동 188-10','57_1.jpg,57_2.jpg,57_3.jpg,57_4.jpg,57_5.jpg',60,49,'흑석역 도보5분 중앙대정문 도보1분에 있는 방입니다. 가까운 중앙대병원,여의도,노량진으로 퇴근하시거나 근방 7호선 숭실대까지 이용가능합니다.
 
 풀옵션이라 개인물건만 가지고 오시면 OK!','010-1111-1167','2021-01-06');
-insert into sr_room values	(seq_sr_room.nextval,0,'이수역 5분 쓰리룸 빌라 룸메이트 찾아요','서울특별시 동작구 사당동 1007-16','58_1.jpg,58_2.jpg,58_3.jpg,58_4.jpg,58_5.jpg',65,36,'이수역과 가까운 쓰리룸 빌라예요.
+insert into sr_room values	(seq_sr_room.nextval,0,'이수역 5분 쓰리룸 빌라 룸메이트 찾아요','서울특별시 동작구 사당동 1038-37','58_1.jpg,58_2.jpg,58_3.jpg,58_4.jpg,58_5.jpg',65,36,'이수역과 가까운 쓰리룸 빌라예요.
 현재 2명 거주중이고 남은 방에 들어오실 분 찾고있습니다.
 
 세탁기, 에어컨, 와이파이, 조리도구 등 풀옵션에 침대와 책상도 구비되어 있습니다. 사용하실 이불과 개인용품만 챙겨서 오시면 돼요

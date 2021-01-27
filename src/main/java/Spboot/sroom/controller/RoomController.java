@@ -116,7 +116,7 @@ public class RoomController {
 		String header="Bearer "+access_token;
 		
 		try {
-			String googleApiURL="https://www.googleapis.com/oauth2/v3/tokeninfo";
+			String googleApiURL="https://www.googleapis.com/oauth2/v3/userinfo";
 			URL url=new URL(googleApiURL);
 			HttpURLConnection con=(HttpURLConnection)url.openConnection();	
 			con.setRequestMethod("GET");

@@ -29,7 +29,7 @@ create 	table 	sr_member(	mem_id	 number(6) 	primary key,
 			mem_image	 varchar2(30) default 'noProfile.jpg',		
 			mem_gender	 char(1), check(mem_gender in('f', 'm')),
 			mem_confirm	 char(1) 	 default 'n',	check(mem_confirm in('y', 'n')) ,
-			room_indate 	 timestamp 	 default 	sysdate) ;
+			mem_indate 	 timestamp 	 default 	sysdate) ;
 create 	sequence	seq_sr_member	increment by 	1;		
 						
 create 	table 	sr_room(	room_id	 number(6) 	primary key,	
