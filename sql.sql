@@ -5,3 +5,5 @@ create table member1 (
 
 insert into member1 values('minjung', '1234');
 insert into member1 values('hana', '1111');
+
+select*from sr_room
