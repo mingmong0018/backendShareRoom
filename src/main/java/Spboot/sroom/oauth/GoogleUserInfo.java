@@ -8,7 +8,7 @@ public class GoogleUserInfo implements UserInfo{
 	
 	@Override
 	public String getClientId() {
-		String googleClientId="166602658975-pu0k2i9jimdpkqn99fstlj2vnk2ct6ud.apps.googleusercontent.com";
+		String googleClientId="166602658975-60bi0mdf8r5h05g8mttklpqtrh5hc6g7.apps.googleusercontent.com";
 		return googleClientId;
 	}
 

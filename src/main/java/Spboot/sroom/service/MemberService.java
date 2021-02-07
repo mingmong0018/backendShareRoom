@@ -36,32 +36,6 @@ public class MemberService implements IMemberService{
 	}
 
 	@Override
-	public String createJWTToken(String id, String name, String email, String tokenSecret) {
-	        String token = null;
-	        try {
-	            Long EXPIRATION_TIME = 1000L * 60L * 10L;
-	            Date issuedAt = new Date();
-	            Date notBefore = new Date(issuedAt.getTime());
-	            Date expiresAt = new Date(issuedAt.getTime() + EXPIRATION_TIME);
-
-	            Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
-	            token = JWT.create()
-	                    .withIssuer("ShareRoom")
-	                    .withSubject(name)
-	                    .withAudience(name)
-	                    .withClaim("id", id)
-	                    .withClaim("name", name)
-	                    .withClaim("email", email)
-	                    .withNotBefore(notBefore)
-	                    .withExpiresAt(expiresAt)
-	                    .sign(algorithm);
-	        } catch (Exception e) {
-	            System.err.println("err: " + e);
-	        }
-	        return token;
-	    }
-
-	@Override
 	public String getUserInfo(String access_token,String apiURL) {
 		String header="Bearer "+access_token;
 		
@@ -89,6 +63,11 @@ public class MemberService implements IMemberService{
 			return "Err";
 		}
 		
+	}
+
+	@Override
+	public MemberVO getMember(String id) {
+		return mdao.getMember(id);
 	}
 	}
 

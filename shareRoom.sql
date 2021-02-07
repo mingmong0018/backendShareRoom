@@ -20,7 +20,7 @@
 --drop sequence seq_sr_tag_option;
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
-select * from sr_member
+select * from sr_member where mem_id='google_110756038095356896059';
 create 	table 	sr_member(	mem_id	 varchar2(50) 	primary key,	
 			mem_email	 varchar2(50) 	not null,	
 			mem_name	 varchar2(20) 	not null,	
@@ -33,7 +33,7 @@ create 	table 	sr_member(	mem_id	 varchar2(50) 	primary key,
 create 	sequence	seq_sr_member	increment by 	1;		
 						
 create 	table 	sr_room(	room_id	 number(6) 	primary key,	
-			mem_id	 number(6) 	references 	sr_member(mem_id) ,
+			mem_id	 varchar2(50) 	references 	sr_member(mem_id) ,
 			room_title	 varchar2(50 char) 	not null,	
 			room_address	 varchar2(50 char) 	not null,	
 			room_images	 varchar2(100) ,		
@@ -43,6 +43,8 @@ create 	table 	sr_room(	room_id	 number(6) 	primary key,
 			room_mem_phone	 varchar2(30) 	not null,	
 			room_indate	 timestamp	 default 	sysdate) ;
 create 	sequence	seq_sr_room	increment by 	1;		
+
+select * from sr_room;
 						
 create 	table 	sr_room_rep(	room_rep_id 	 number(6) 	primary key,	
 			room_id 	 number(6) 	references 	sr_room(room_id) ,

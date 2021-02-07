@@ -9,105 +9,72 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-
 import Spboot.sroom.dto.MemberVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
 import Spboot.sroom.oauth.UserInfo;
+import Spboot.sroom.redis.IUseRedis;
+import Spboot.sroom.redis.UseRedis;
 import Spboot.sroom.service.IMemberService;
+import Spboot.sroom.util.IJwtUtil;
 
-@Controller
+@RestController
 public class MemberController {
 	
 	@Value("${googleClientSecret}")
 	String googleClientSecret;
 	@Value("${googleApiKey}")
 	String googleApiKey;
-	@Value("${jwt.secret}")
-	String tokenSecret;
 	
 	
 	@Autowired
 	IMemberService ms;
+	
 	UserInfo userInfo;
 	
 	
 	
+//	@Autowired
+//	RedisTemplate<String,Object> redisTemplate;
 	
-
+	@Autowired
+	IJwtUtil jwtUtil;
+	@Autowired
+	IUseRedis useRedis;
+	
+	@RequestMapping(value="/getMember",method= {RequestMethod.POST})
+	public MemberVO getMember(@RequestParam(value = "id") String id) {
+		return ms.getMember(id);
+	}
+	
+	@RequestMapping(value="/logout",method= {RequestMethod.GET})
+	public String logout() {
+		System.out.println("헬로");
+		return "redirect:http://localhost:8081/"; 
+//		return "";
+	}
+	
+	
 	@RequestMapping(value = "/login", method = {RequestMethod.GET,RequestMethod.POST})
 	public String login(Locale locale, Model model,
-			@RequestParam(value = "code") String code,
+			@RequestParam(value = "accessToken") String accessToken,
 			@RequestParam(value = "state") String state)throws Exception{
+		System.out.println("accessToken : "+accessToken);
 		
-		String currentPath=null;
-		String clientSecret=null;
-		String apiKey=null;
+		String JWTtoken=null;
 		
-			String[] stateCurrent = state.split("_");
-			state=stateCurrent[0];
-			currentPath=stateCurrent[1];
-			System.out.println("state : "+state);
-			System.out.println("currentPath : "+currentPath);
-			if(state.equals("g")) {
-				userInfo=new GoogleUserInfo();
-				clientSecret=googleClientSecret;
-				apiKey=googleApiKey;
-			}else if(state.equals("naver")) {
-				
-			}else {
-				
-			}
-	//		code를 보낼준비
-			String clientId=userInfo.getClientId();
-			String redirectURI=userInfo.getRedirectURI();
-			String apiURL=userInfo.getApiURL();
-			apiURL += "?code=" + code;
-			apiURL += "&client_id=" + clientId;
-			apiURL += "&client_secret=" + clientSecret;
-			apiURL += "&redirect_uri=" + redirectURI;
-			apiURL += "&grant_type=" + "authorization_code";
-			System.out.println("state : "+state);
-			String access_token="";
-	//		String refresh_token="";
-			
-			//code를 보냄
-			try {
-				URL url=new URL(apiURL);
-				HttpURLConnection con = (HttpURLConnection)url.openConnection();
-				con.setRequestMethod("POST");
-				
-				con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-				con.setFixedLengthStreamingMode(0);
-				con.setDoOutput(true);
-				int responseCode = con.getResponseCode();
-				System.out.println("con : "+con);
-				System.out.println("responseCode : "+responseCode);
-				BufferedReader br;
-	
-	            if(responseCode==200) { // 정상 호출
-	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-	            } else {  // 에러 발생
-	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-	            }
-	            String inputLine;
-	            StringBuffer res = new StringBuffer();
-	            while ((inputLine = br.readLine()) != null) {
-	                res.append(inputLine);
-	            }
-	            br.close();
-	            
-	//            성공적으로 토큰을 가져온다면
-				if(responseCode==200) { 
-					
-					
+		userInfo=new GoogleUserInfo();
+
 	                String name, email, tmp,profile_image,id;
 	                char gender;
 	                int age;
@@ -116,9 +83,7 @@ public class MemberController {
 	                
 	//               accessToken을 이용해서 사용자 정보를 Json로 값 가져오기
 	                JsonParser jsonParser = new JsonParser();
-	                JsonElement accessElement = jsonParser.parse(res.toString());
-	                access_token = accessElement.getAsJsonObject().get("access_token").getAsString();
-	                tmp = ms.getUserInfo(access_token,userInfo.getAccessTokenApiURL());
+	                tmp = ms.getUserInfo(accessToken,userInfo.getAccessTokenApiURL());
 	                JsonElement userInfoElement = jsonParser.parse(tmp);
 	                userInfo.setField(userInfoElement);
 	                
@@ -135,29 +100,34 @@ public class MemberController {
 	 
 	//              회원가입 안되어있으면
 	                if(!id.equals(ms.searchMember(id))){
-	                mvo.setId(id);
-	                mvo.setName(name);
-	                mvo.setNickname(name);
-	                mvo.setEmail(email);
-	                mvo.setAge(age);
-	                mvo.setGender(gender);
-	                mvo.setImage(profile_image);
+	                mvo.setMem_id(id);
+	                mvo.setMem_name(name);
+	                mvo.setMem_nickname(name);
+	                mvo.setMem_email(email);
+	                mvo.setMem_age(age);
+	                mvo.setMem_gender(gender);
+	                mvo.setMem_image(profile_image);
 	                ms.insertMember(mvo);
 	                }
-	//				jwt생성
-	                access_token = ms.createJWTToken(id,name,email,tokenSecret);
 	                
 	                
+//					jwt생성  
+	                JWTtoken = jwtUtil.createJWT(id,name,email);
+	                System.out.println("userName : "+userInfo.getName());
+	                System.out.println(JWTtoken);
 	                
-	               
 	                
-				}
+////	                redis사용
+//	                ValueOperations<String,Object>vop=redisTemplate.opsForValue();
+//	                vop.set(id, JWTtoken);
+//	                String result = (String) vop.get(id);
+//	                useRedis=new UseRedis();
+	                useRedis.setField(id,JWTtoken);
+	                String result=useRedis.getField(id);
+	                System.out.println("result : "+result);
+	                
 	
-	
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return "redirect:"+currentPath+"?token="+access_token;
+			return JWTtoken;
 			
 			
 
