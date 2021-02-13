@@ -22,6 +22,8 @@
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
 select * from sr_member where mem_id='google_110756038095356896059';
+
+select*from sr_room
 =======
 drop table sr_member cascade constraints;
 drop table sr_room cascade constraints;

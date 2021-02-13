@@ -1,17 +1,11 @@
 package Spboot.sroom.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,12 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
 import Spboot.sroom.dto.MemberVO;
+import Spboot.sroom.dto.RoomVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
 import Spboot.sroom.oauth.UserInfo;
 import Spboot.sroom.redis.IUseRedis;
-import Spboot.sroom.redis.UseRedis;
 import Spboot.sroom.service.IMemberService;
+import Spboot.sroom.service.IRoomService;
 import Spboot.sroom.util.IJwtUtil;
 
 @RestController
@@ -51,7 +47,7 @@ public class MemberController {
 	IJwtUtil jwtUtil;
 	@Autowired
 	IUseRedis useRedis;
-	
+
 	@RequestMapping(value="/getMember",method= {RequestMethod.POST})
 	public MemberVO getMember(@RequestParam(value = "id") String id) {
 		return ms.getMember(id);
@@ -89,6 +85,7 @@ public class MemberController {
 	                
 	//              필드에 값 넣기
 	                id = state+"_"+userInfo.getId();
+	                System.out.print("id:"+id);
 	                Calendar cal=Calendar.getInstance();
 	                int year=cal.get(Calendar.YEAR);
 	                age = year-userInfo.getAge()+1;
@@ -123,6 +120,7 @@ public class MemberController {
 //	                String result = (String) vop.get(id);
 //	                useRedis=new UseRedis();
 	                useRedis.setField(id,JWTtoken);
+	                System.out.print("redis:"+useRedis.getField(id));
 	                String result=useRedis.getField(id);
 	                System.out.println("result : "+result);
 	                
