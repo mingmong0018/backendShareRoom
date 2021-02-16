@@ -23,7 +23,12 @@
 update sr_member set mem_email='mingmong@nate.com', mem_nickname='김민즁', 
 		mem_age=23 where mem_id='google_110756038095356896059';
 select * from sr_member where mem_id='google_110756038095356896059';
+<<<<<<< HEAD
 update sr_member set mem_nickname='김민정' where mem_id='google_110756038095356896059';
+=======
+
+select*from sr_room
+>>>>>>> cae16aa5592bf58f1a7ffe8be0191a542ba2f9ba
 =======
 drop table sr_member cascade constraints;
 drop table sr_room cascade constraints;
