@@ -5,29 +5,10 @@ import com.google.gson.JsonElement;
 public class GoogleUserInfo implements UserInfo{
 	
 	JsonElement userInfoElement;
-	
-	@Override
-	public String getClientId() {
-		String googleClientId="166602658975-60bi0mdf8r5h05g8mttklpqtrh5hc6g7.apps.googleusercontent.com";
-		return googleClientId;
-	}
-
-	@Override
-	public String getRedirectURI() {
-		String googleRedirectURI="http://localhost:8070/login";
-		
-		return googleRedirectURI;
-	}
-
-	@Override
-	public String getApiURL() {
-		String googleApiURL="https://accounts.google.com/o/oauth2/token";
-		return googleApiURL;
-	}
 
 	@Override
 	public String getAccessTokenApiURL() {
-		String accessTokenApiURL="https://people.googleapis.com/v1/people/me?personFields=genders%2Cbirthdays%2CemailAddresses%2Cnames%2Cphotos";
+		String accessTokenApiURL="https://people.googleapis.com/v1/people/me?personFields=genders%2Cbirthdays%2Cnames%2Cphotos";
 		return accessTokenApiURL;
 	}
 
@@ -48,12 +29,6 @@ public class GoogleUserInfo implements UserInfo{
 	public String getName() {
 		String name=userInfoElement.getAsJsonObject().get("names").getAsJsonArray().get(0).getAsJsonObject().get("displayName").getAsString();
 		return name;
-	}
-
-	@Override
-	public String getEmail() {
-		String email=userInfoElement.getAsJsonObject().get("emailAddresses").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString();
-		return email;
 	}
 
 	@Override

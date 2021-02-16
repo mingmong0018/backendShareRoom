@@ -22,6 +22,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import Spboot.sroom.dto.MemberVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
+import Spboot.sroom.oauth.KakaoUserInfo;
+import Spboot.sroom.oauth.NaverUserInfo;
 import Spboot.sroom.oauth.UserInfo;
 import Spboot.sroom.redis.IUseRedis;
 import Spboot.sroom.redis.UseRedis;
@@ -52,17 +54,28 @@ public class MemberController {
 	@Autowired
 	IUseRedis useRedis;
 	
+	@RequestMapping(value="/updateMember",method= {RequestMethod.POST})
+	public String updateMember(
+			@RequestParam(value = "id") String id,
+			@RequestParam(value = "email") String email,
+			@RequestParam(value = "nickname") String nickname,
+			@RequestParam(value = "age") int age) {
+		System.out.println(id+email+nickname+age);
+		MemberVO mvo=new MemberVO();
+		mvo.setMem_id(id);
+		mvo.setMem_nickname(nickname);
+		mvo.setMem_age(age);
+		ms.updateMember(mvo);
+		System.out.println("나 작동됐니..?");
+		return "success";
+	}
+	
 	@RequestMapping(value="/getMember",method= {RequestMethod.POST})
 	public MemberVO getMember(@RequestParam(value = "id") String id) {
 		return ms.getMember(id);
 	}
 	
-	@RequestMapping(value="/logout",method= {RequestMethod.GET})
-	public String logout() {
-		System.out.println("헬로");
-		return "redirect:http://localhost:8081/"; 
-//		return "";
-	}
+	
 	
 	
 	@RequestMapping(value = "/login", method = {RequestMethod.GET,RequestMethod.POST})
@@ -73,7 +86,14 @@ public class MemberController {
 		
 		String JWTtoken=null;
 		
-		userInfo=new GoogleUserInfo();
+		if(state.equals("google")) {
+			userInfo=new GoogleUserInfo();
+		}else if(state.equals("naver")) {
+			userInfo=new NaverUserInfo();
+		}else if(state.equals("kakao")) {
+			userInfo=new KakaoUserInfo();
+		}
+				
 
 	                String name, email, tmp,profile_image,id;
 	                char gender;
@@ -85,6 +105,7 @@ public class MemberController {
 	                JsonParser jsonParser = new JsonParser();
 	                tmp = ms.getUserInfo(accessToken,userInfo.getAccessTokenApiURL());
 	                JsonElement userInfoElement = jsonParser.parse(tmp);
+	                System.out.println(tmp);
 	                userInfo.setField(userInfoElement);
 	                
 	//              필드에 값 넣기
@@ -92,18 +113,22 @@ public class MemberController {
 	                Calendar cal=Calendar.getInstance();
 	                int year=cal.get(Calendar.YEAR);
 	                age = year-userInfo.getAge()+1;
+	                if(userInfo.getAge()==1000) {
+	                	age=900;
+	                }
 	                name=userInfo.getName();
-	                email = userInfo.getEmail();
 	                profile_image = userInfo.getImage();
 	                gender = userInfo.getGender();
-	                System.out.println(id+age+name+email+profile_image+gender);
+	                if(userInfo.getGender()=='A') {
+	                	gender='A';
+	                }
+	                System.out.println(id+age+name+profile_image+gender);
 	 
 	//              회원가입 안되어있으면
 	                if(!id.equals(ms.searchMember(id))){
 	                mvo.setMem_id(id);
 	                mvo.setMem_name(name);
 	                mvo.setMem_nickname(name);
-	                mvo.setMem_email(email);
 	                mvo.setMem_age(age);
 	                mvo.setMem_gender(gender);
 	                mvo.setMem_image(profile_image);
@@ -112,7 +137,7 @@ public class MemberController {
 	                
 	                
 //					jwt생성  
-	                JWTtoken = jwtUtil.createJWT(id,name,email);
+	                JWTtoken = jwtUtil.createJWT(id,name);
 	                System.out.println("userName : "+userInfo.getName());
 	                System.out.println(JWTtoken);
 	                
@@ -123,11 +148,9 @@ public class MemberController {
 //	                String result = (String) vop.get(id);
 //	                useRedis=new UseRedis();
 	                useRedis.setField(id,JWTtoken);
-	                String result=useRedis.getField(id);
-	                System.out.println("result : "+result);
 	                
 	
-			return JWTtoken;
+			return JWTtoken+","+name+","+id;
 			
 			
 
