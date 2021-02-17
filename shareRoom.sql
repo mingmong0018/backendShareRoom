@@ -1,5 +1,4 @@
 --<<모두삭제>>
-<<<<<<< HEAD
 --drop table sr_member cascade constraints;
 --drop table sr_room cascade constraints;
 --drop table sr_room_rep cascade constraints;
@@ -21,9 +20,15 @@
 --drop sequence seq_sr_tag_option;
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
+update sr_member set mem_email='mingmong@nate.com', mem_nickname='김민즁', 
+		mem_age=23 where mem_id='google_110756038095356896059';
 select * from sr_member where mem_id='google_110756038095356896059';
+<<<<<<< HEAD
+update sr_member set mem_nickname='김민정' where mem_id='google_110756038095356896059';
+=======
 
 select*from sr_room
+>>>>>>> cae16aa5592bf58f1a7ffe8be0191a542ba2f9ba
 =======
 drop table sr_member cascade constraints;
 drop table sr_room cascade constraints;
@@ -46,9 +51,7 @@ drop sequence seq_sr_tag_option;
 drop sequence seq_sr_notice;
 drop sequence seq_sr_notify;
 
->>>>>>> 0f7bc2253291d38affc33d7b4f153620ad4d0015
 create 	table 	sr_member(	mem_id	 varchar2(50) 	primary key,	
-			mem_email	 varchar2(50) 	not null,	
 			mem_name	 varchar2(20) 	not null,	
 			mem_age	 number(3)	not null,	
 			mem_nickname	 varchar2(15 char) 	not null,	

@@ -69,5 +69,10 @@ public class MemberService implements IMemberService{
 	public MemberVO getMember(String id) {
 		return mdao.getMember(id);
 	}
+
+	@Override
+	public void updateMember(MemberVO mvo) {
+		mdao.updateMember(mvo);
+	}
 	}
 

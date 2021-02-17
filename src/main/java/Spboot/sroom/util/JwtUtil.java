@@ -42,7 +42,7 @@ public class JwtUtil implements IJwtUtil{
 	}
 
 	@Override
-	public String createJWT(String id, String name, String email) {
+	public String createJWT(String id, String name) {
 		System.out.println("SECRET : "+tokenSecret);
 		String token = null;
         try {
@@ -58,7 +58,6 @@ public class JwtUtil implements IJwtUtil{
                     .withAudience(name)
                     .withClaim("id", id)
                     .withClaim("name", name)
-                    .withClaim("email", email)
                     .withNotBefore(notBefore)
                     .withExpiresAt(expiresAt)
                     .sign(algorithm);

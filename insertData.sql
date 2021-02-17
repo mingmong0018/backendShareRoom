@@ -1,7 +1,7 @@
 --<<테스트사용자>>
 <<<<<<< HEAD
-insert into sr_member(mem_id, mem_email, mem_name, mem_age, mem_nickname, mem_gender) 
-values('0', 'test@test.com', '테스트', '30', 'testNickname', 'f');
+insert into sr_member(mem_id,  mem_name, mem_age, mem_nickname, mem_gender) 
+values('0', '테스트', '30', 'testNickname', 'f');
 
 insert into sr_room values   (seq_sr_room.nextval,'0','고시원 임대합니다','서울특별시 용산구 후암동 산1-126','1_1.webp,1_2.webp,1_3.webp,1_4.webp,1_5.webp',50,30,'고시원 임대합니다헬로우 환영합니다 환영해요','010-1111-1111','2021-01-05');
 insert into sr_room values   (seq_sr_room.nextval,'0','쉐어하우스 임대합니다','서울특별시 용산구 용산동2가 산5-6','2_1.webp,2_2.webp,2_3.webp,2_4.webp,2_5.webp',20,15,'쉐어하우스 임대합니다 헬로우 환영합니다 환영해요','010-1111-1112','2021-01-05');
@@ -75,8 +75,8 @@ insert into sr_room values   (seq_sr_room.nextval,'0','중앙대, 흑석역 5분
 풀옵션이라 개인물건만 가지고 오시면 OK!','010-1111-1167','2021-01-06');
 insert into sr_room values   (seq_sr_room.nextval,'0','이수역 5분 쓰리룸 빌라 룸메이트 찾아요','서울특별시 동작구 사당동 1038-37','58_1.jpg,58_2.jpg,58_3.jpg,58_4.jpg,58_5.jpg',65,36,'이수역과 가까운 쓰리룸 빌라예요.
 =======
---insert into sr_member(mem_id, mem_email, mem_name, mem_age, mem_nickname, mem_gender) 
---values('0', 'test@test.com', '테스트', '30', 'testNickname', 'f');
+insert into sr_member(mem_id, mem_name, mem_age, mem_nickname, mem_gender) 
+values('0', '테스트', '30', 'testNickname', 'f');
 
 delete from sr_room
 
