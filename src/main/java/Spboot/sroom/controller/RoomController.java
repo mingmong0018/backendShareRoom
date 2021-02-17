@@ -21,9 +21,7 @@ public class RoomController {
 	
 	@RequestMapping(value="/listRoom", method={RequestMethod.GET})
     public List<RoomVO> listAll(Model model) {
-		System.out.print("서버연결");
 		List<RoomVO> rooms = rs.getAllRoom();
-		System.out.print("방 목록:"+rooms);
 		return rooms;
 	}
 	
