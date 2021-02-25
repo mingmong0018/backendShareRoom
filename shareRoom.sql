@@ -17,7 +17,7 @@
 --drop sequence seq_sr_room_re_rep;
 --drop sequence seq_sr_option;
 --drop sequence seq_sr_room_option;
---drop sequence seq_sr_tag_option;
+--drop sequence seq_sr_tag;
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
 update sr_member set mem_email='mingmong@nate.com', mem_nickname='김민즁', 
@@ -110,7 +110,7 @@ create 	table 	sr_wish_list(	wish_id	 number(6) 	primary key,
 create 	table 	sr_tag(	tag_id	 number(10) 	primary key,	
 			room_id	 number(6) 	references 	sr_room(room_id) ,
 			tag_content	 varchar2(100) 	not null);
-create 	sequence	seq_sr_tag_option	start with 1 increment by 1;	
+create 	sequence	seq_sr_tag start with 1 increment by 1;	
 						
 create 	table 	sr_notice(	notice_id 	 number(6) 	primary key,	
 			member_id 	 varchar2(50) 	references 	sr_member(mem_id) ,

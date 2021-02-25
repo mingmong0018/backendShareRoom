@@ -49,7 +49,6 @@ public class MemberController {
 	IJwtUtil jwtUtil;
 	@Autowired
 	IUseRedis useRedis;
-<<<<<<< HEAD
 	
 	@RequestMapping(value="/updateMember",method= {RequestMethod.POST})
 	public String updateMember(
@@ -67,9 +66,6 @@ public class MemberController {
 		return "success";
 	}
 	
-=======
-
->>>>>>> cae16aa5592bf58f1a7ffe8be0191a542ba2f9ba
 	@RequestMapping(value="/getMember",method= {RequestMethod.POST})
 	public MemberVO getMember(@RequestParam(value = "id") String id) {
 		return ms.getMember(id);
@@ -149,12 +145,10 @@ public class MemberController {
 //	                String result = (String) vop.get(id);
 //	                useRedis=new UseRedis();
 	                useRedis.setField(id,JWTtoken);
-<<<<<<< HEAD
-=======
+	                
 	                System.out.print("redis:"+useRedis.getField(id));
 	                String result=useRedis.getField(id);
 	                System.out.println("result : "+result);
->>>>>>> cae16aa5592bf58f1a7ffe8be0191a542ba2f9ba
 	                
 	
 			return JWTtoken+","+name+","+id;

@@ -6,6 +6,7 @@
     
 <mapper namespace="Spboot.sroom.dao.IRoomDao">
 	<select id="getAllRoom" resultType="Spboot.sroom.dto.RoomVO">
-		select * from sr_room order by room_id
+		select room_id, room_title, room_address, room_deposit, room_rent, room_images 
+		from sr_room order by room_id
 	</select>
 </mapper>
