@@ -1,7 +1,6 @@
 package Spboot.sroom.controller;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +15,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 import Spboot.sroom.dto.MemberVO;
-import Spboot.sroom.dto.RoomVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
 import Spboot.sroom.oauth.KakaoUserInfo;
 import Spboot.sroom.oauth.NaverUserInfo;
 import Spboot.sroom.oauth.UserInfo;
 import Spboot.sroom.redis.IUseRedis;
 import Spboot.sroom.service.IMemberService;
-import Spboot.sroom.service.IRoomService;
 import Spboot.sroom.util.IJwtUtil;
 
 @RestController
