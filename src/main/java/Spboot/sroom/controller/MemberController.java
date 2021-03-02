@@ -3,10 +3,7 @@ package Spboot.sroom.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.filechooser.FileSystemView;
@@ -30,14 +27,12 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import Spboot.sroom.dto.MemberVO;
-import Spboot.sroom.dto.RoomVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
 import Spboot.sroom.oauth.KakaoUserInfo;
 import Spboot.sroom.oauth.NaverUserInfo;
 import Spboot.sroom.oauth.UserInfo;
 import Spboot.sroom.redis.IUseRedis;
 import Spboot.sroom.service.IMemberService;
-import Spboot.sroom.service.IRoomService;
 import Spboot.sroom.util.IJwtUtil;
 
 @RestController
@@ -63,13 +58,7 @@ public class MemberController {
 	IJwtUtil jwtUtil;
 	@Autowired
 	IUseRedis useRedis;
-	
-//	@RequestMapping(value="/img",method= {RequestMethod.POST})
-//	public void img(
-//			@RequestParam(value = "id") String id,
-//			@RequestParam(value = "img") String img) {
-//		System.out.println(id+img);
-//	}
+
 	
 	@RequestMapping(value="/updateMember",method= {RequestMethod.POST})
 	public String updateMember(HttpServletRequest request) {
@@ -189,6 +178,7 @@ public class MemberController {
 //	                useRedis=new UseRedis();
 	                useRedis.setField(id,JWTtoken);
 	                System.out.print("redis:"+useRedis.getField(id));
+
 
 
 	

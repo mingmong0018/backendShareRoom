@@ -17,39 +17,14 @@
 --drop sequence seq_sr_room_re_rep;
 --drop sequence seq_sr_option;
 --drop sequence seq_sr_room_option;
---drop sequence seq_sr_tag_option;
+--drop sequence seq_sr_tag;
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
 update sr_member set mem_email='mingmong@nate.com', mem_nickname='김민즁', 
 		mem_age=23 where mem_id='google_110756038095356896059';
 select * from sr_member where mem_id='google_110756038095356896059';
-<<<<<<< HEAD
 update sr_member set mem_nickname='김민정' where mem_id='google_110756038095356896059';
-=======
-
 select*from sr_room
->>>>>>> cae16aa5592bf58f1a7ffe8be0191a542ba2f9ba
-=======
-drop table sr_member cascade constraints;
-drop table sr_room cascade constraints;
-drop table sr_room_rep cascade constraints;
-drop table sr_room_re_rep cascade constraints;
-drop table sr_option cascade constraints;
-drop table sr_room_option cascade constraints;
-drop table sr_wish_list cascade constraints;
-drop table sr_tag cascade constraints;
-drop table sr_notice cascade constraints;
-drop table sr_notify_group cascade constraints;
-drop table sr_notify cascade constraints;
-
-drop sequence seq_sr_room;
-drop sequence seq_sr_room_rep;
-drop sequence seq_sr_room_re_rep;
-drop sequence seq_sr_option;
-drop sequence seq_sr_room_option;
-drop sequence seq_sr_tag_option;
-drop sequence seq_sr_notice;
-drop sequence seq_sr_notify;
 
 create 	table 	sr_member(	mem_id	 varchar2(50) 	primary key,	
 			mem_name	 varchar2(20) 	not null,	
@@ -70,13 +45,13 @@ create 	table 	sr_room(	room_id	 number(6) 	primary key,
 			room_report	 varchar2(1000 char) ,		
 			room_mem_phone	 varchar2(30) 	not null,	
 			room_indate	 timestamp	 default 	sysdate) ;
-<<<<<<< HEAD
+
 create 	sequence	seq_sr_room	increment by 	1;		
 
 select * from sr_room;
-=======
+
 create 	sequence	seq_sr_room	start with 1 increment by 1;	
->>>>>>> 0f7bc2253291d38affc33d7b4f153620ad4d0015
+
 						
 create 	table 	sr_room_rep(	room_rep_id 	 number(6) 	primary key,	
 			room_id 	 number(6) 	references 	sr_room(room_id) ,
@@ -110,7 +85,7 @@ create 	table 	sr_wish_list(	wish_id	 number(6) 	primary key,
 create 	table 	sr_tag(	tag_id	 number(10) 	primary key,	
 			room_id	 number(6) 	references 	sr_room(room_id) ,
 			tag_content	 varchar2(100) 	not null);
-create 	sequence	seq_sr_tag_option	start with 1 increment by 1;	
+create 	sequence	seq_sr_tag start with 1 increment by 1;	
 						
 create 	table 	sr_notice(	notice_id 	 number(6) 	primary key,	
 			member_id 	 varchar2(50) 	references 	sr_member(mem_id) ,

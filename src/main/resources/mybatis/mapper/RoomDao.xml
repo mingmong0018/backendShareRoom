@@ -6,6 +6,20 @@
     
 <mapper namespace="Spboot.sroom.dao.IRoomDao">
 	<select id="getAllRoom" resultType="Spboot.sroom.dto.RoomVO">
-		select * from sr_room order by room_id
+		select room_id, room_title, room_address, room_deposit, room_rent, room_images 
+		from sr_room order by room_id
+	</select>
+	
+	<select id="getRoom" resultType="Spboot.sroom.dto.RoomDetailVO">
+		select*from sr_room where room_id=#{param1}
+	</select>
+	
+	<select id="getRoomTag" resultType="Spboot.sroom.dto.RoomTagVO">
+		select tag_id, tag_content from sr_tag where room_id=#{param1} order by tag_id
+	</select>
+	
+	<select id="getRoomOption" resultType="Spboot.sroom.dto.RoomOptionVO">
+		select a.room_id, b.option_group, b.option_name from sr_room_option a, sr_option b 
+		where room_id=#{param1} and a.option_id=b.option_id
 	</select>
 </mapper>

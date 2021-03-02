@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import Spboot.sroom.dto.RoomDetailVO;
+import Spboot.sroom.dto.RoomOptionVO;
+import Spboot.sroom.dto.RoomTagVO;
 import Spboot.sroom.dto.RoomVO;
 import Spboot.sroom.service.IRoomService;
 
@@ -20,11 +24,27 @@ public class RoomController {
 	IRoomService rs;
 	
 	@RequestMapping(value="/listRoom", method={RequestMethod.GET})
-    public List<RoomVO> listAll(Model model) {
-		System.out.print("서버연결");
+    public List<RoomVO> listAll() {
 		List<RoomVO> rooms = rs.getAllRoom();
-		System.out.print("방 목록:"+rooms);
 		return rooms;
+	}
+	
+	@RequestMapping(value="/roomDetail", method={RequestMethod.GET})
+    public RoomDetailVO getRoom(@RequestParam(value = "roomId") int roomId) {
+		RoomDetailVO room = rs.getRoom(roomId);
+		return room;
+	}
+	
+	@RequestMapping(value="/roomTag", method={RequestMethod.GET})
+    public List<RoomTagVO> getRoomTag(@RequestParam(value = "roomId") int roomId) {
+		List<RoomTagVO> tag = rs.getRoomTag(roomId);
+		return tag;
+	}
+	
+	@RequestMapping(value="/roomOption", method={RequestMethod.GET})
+    public List<RoomOptionVO> getRoomOption(@RequestParam(value = "roomId") int roomId) {
+		List<RoomOptionVO> option = rs.getRoomOption(roomId);
+		return option;
 	}
 	
 	/*

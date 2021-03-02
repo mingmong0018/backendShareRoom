@@ -1,14 +1,9 @@
 package Spboot.sroom.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.PathResourceResolver;
 import Spboot.sroom.config.interceptor.JwtAuthIntercepter;
 
 @Component
@@ -26,6 +21,8 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(jwtAuthIntercepter)
 					.addPathPatterns("/*")
-					.excludePathPatterns("/upload/**","/login","/listRoom");
+
+					.excludePathPatterns("/upload/**","/login","/listRoom","/roomDetail","/roomTag","/roomOption");
+
 	}
 }
