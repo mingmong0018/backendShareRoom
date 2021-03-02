@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import Spboot.sroom.dto.MemberVO;
 import Spboot.sroom.dto.RoomDetailVO;
 import Spboot.sroom.dto.RoomOptionVO;
 import Spboot.sroom.dto.RoomTagVO;
 import Spboot.sroom.dto.RoomVO;
+import Spboot.sroom.service.IMemberService;
 import Spboot.sroom.service.IRoomService;
 
 
@@ -22,6 +24,9 @@ public class RoomController {
 
 	@Autowired
 	IRoomService rs;
+	
+	@Autowired
+	IMemberService ms;
 	
 	@RequestMapping(value="/listRoom", method={RequestMethod.GET})
     public List<RoomVO> listAll() {
@@ -45,6 +50,50 @@ public class RoomController {
     public List<RoomOptionVO> getRoomOption(@RequestParam(value = "roomId") int roomId) {
 		List<RoomOptionVO> option = rs.getRoomOption(roomId);
 		return option;
+	}
+	
+	@RequestMapping(value="/keyword", method={RequestMethod.POST})
+    public void insertKeyword(
+    		@RequestParam(value = "keyword") String keyword,
+    		@RequestParam(value = "id") String mem_id
+    		) {
+		rs.insertKeyword(mem_id, keyword);
+	}
+	
+	@RequestMapping(value="/writer", method={RequestMethod.GET})
+    public MemberVO getRoomWriter(
+    		@RequestParam(value = "id") String mem_id
+    		) {
+		MemberVO writer = ms.getMember(mem_id);
+		return writer;
+	}
+	
+
+	
+	@RequestMapping(value="/wish", method={RequestMethod.GET})
+    public boolean getWishList(
+    		@RequestParam(value = "id") String mem_id,
+    		@RequestParam(value = "roomId") int room_id
+    		) {
+		boolean wish = rs.getWishList(mem_id,room_id);
+		return wish;
+	}
+	
+	@RequestMapping(value="/wish", method={RequestMethod.POST})
+    public void insertWishList(
+    		@RequestParam(value = "id") String mem_id,
+    		@RequestParam(value = "roomId") int room_id
+    		) {
+		rs.insertWishList(mem_id,room_id);
+	}
+	
+	@RequestMapping(value="/wish", method={RequestMethod.DELETE})
+    public void deleteWishList(
+    		@RequestParam(value = "id") String mem_id,
+    		@RequestParam(value = "roomId") int room_id
+    		) {
+		System.out.print(room_id);
+		rs.deleteWishList(mem_id,room_id);
 	}
 	
 	/*
