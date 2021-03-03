@@ -20,11 +20,14 @@
 --drop sequence seq_sr_tag;
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
-update sr_member set mem_email='mingmong@nate.com', mem_nickname='김민즁', 
-		mem_age=23 where mem_id='google_110756038095356896059';
-select * from sr_member where mem_id='google_110756038095356896059';
+update sr_member set mem_age=0 where mem_id='google_110756038095356896059';
+
+		select * from sr_member where mem_id='google_110756038095356896059';
+
 update sr_member set mem_nickname='김민정' where mem_id='google_110756038095356896059';
+
 select*from sr_room
+
 
 create 	table 	sr_member(	mem_id	 varchar2(50) 	primary key,	
 			mem_name	 varchar2(20) 	not null,	
@@ -81,6 +84,7 @@ create 	sequence	seq_sr_room_option	start with 1 increment by 1;
 create 	table 	sr_wish_list(	wish_id	 number(6) 	primary key,	
 			mem_id	 varchar2(50) 	references 	sr_member(mem_id) ,
 			room_id	 number(6) 	references 	sr_room(room_id)) ;
+create 	sequence	seq_sr_wish_list start with 1 increment by 1;	
 						
 create 	table 	sr_tag(	tag_id	 number(10) 	primary key,	
 			room_id	 number(6) 	references 	sr_room(room_id) ,
@@ -106,3 +110,10 @@ create 	table 	sr_notify(	notify_id 	 number(6) 	primary key,
 			notify_delete 	 char(1) 	default 'n',	check(notify_delete in('y', 'n')),
 			notify_indate 	 timestamp 	 default 	sysdate) ;
 create 	sequence	seq_sr_notify	start with 1 increment by 1;	
+
+create 	table 	sr_keyword(	keyword_id 	number(10) 	primary key,	
+			mem_id 	varchar2(50) 	references 	sr_member(mem_id),
+			keyword_content 	varchar2(100) 	not null,	
+			keyword_indate 	timestamp 	default sysdate);	
+create 	sequence	seq_sr_keyword	increment by 	1;
+

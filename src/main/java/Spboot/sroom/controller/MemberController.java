@@ -142,8 +142,8 @@ public class MemberController {
 	                Calendar cal=Calendar.getInstance();
 	                int year=cal.get(Calendar.YEAR);
 	                age = year-userInfo.getAge()+1;
-	                if(userInfo.getAge()==1000) {
-	                	age=900;
+	                if(userInfo.getAge()==0) {
+	                	age=0;
 	                }
 	                name=userInfo.getName();
 	                profile_image = userInfo.getImage();
@@ -151,7 +151,7 @@ public class MemberController {
 	                if(userInfo.getGender()=='A') {
 	                	gender='A';
 	                }
-	                System.out.println(id+age+name+profile_image+gender);
+	                System.out.println(id+"\n"+age+"\n"+name+profile_image+gender);
 	 
 	//              회원가입 안되어있으면
 	                if(!id.equals(ms.searchMember(id))){

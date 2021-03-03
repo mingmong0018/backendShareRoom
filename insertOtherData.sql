@@ -1,21 +1,24 @@
-insert into sr_option values (seq_sr_option.nextval, 'room', '냉장고');
-insert into sr_option values (seq_sr_option.nextval, 'room', '세탁기');
-insert into sr_option values (seq_sr_option.nextval, 'room', '책상');
-insert into sr_option values (seq_sr_option.nextval, 'room', '침대');
-insert into sr_option values (seq_sr_option.nextval, 'room', 'TV');
-insert into sr_option values (seq_sr_option.nextval, 'room', '신발장');
-insert into sr_option values (seq_sr_option.nextval, 'room', '에어컨');
-insert into sr_option values (seq_sr_option.nextval, 'room', '전자도어락');
-insert into sr_option values (seq_sr_option.nextval, 'room', '인덕션');
-insert into sr_option values (seq_sr_option.nextval, 'room', '가스레인지');
-insert into sr_option values (seq_sr_option.nextval, 'room', '옷장');
-insert into sr_option values (seq_sr_option.nextval, 'room', '전자레인지');
-insert into sr_option values (seq_sr_option.nextval, 'room', '비데');
-insert into sr_option values (seq_sr_option.nextval, 'room', '정수기');
-insert into sr_option values (seq_sr_option.nextval, 'etc', '반려동물가능');
-insert into sr_option values (seq_sr_option.nextval, 'etc', '주차가능');
-insert into sr_option values (seq_sr_option.nextval, 'etc', 'CCTV');
-insert into sr_option values (seq_sr_option.nextval, 'etc', '화재경보기');
+insert into sr_option values (seq_sr_option.nextval, 'room', '냉장고'); --1
+insert into sr_option values (seq_sr_option.nextval, 'room', '세탁기'); --2
+insert into sr_option values (seq_sr_option.nextval, 'room', '책상'); --3
+insert into sr_option values (seq_sr_option.nextval, 'room', '침대'); --4
+insert into sr_option values (seq_sr_option.nextval, 'room', 'TV'); --5
+insert into sr_option values (seq_sr_option.nextval, 'room', '신발장'); --6
+insert into sr_option values (seq_sr_option.nextval, 'room', '에어컨'); --7
+insert into sr_option values (seq_sr_option.nextval, 'room', '전자도어락'); --8
+insert into sr_option values (seq_sr_option.nextval, 'room', '인덕션'); --9
+insert into sr_option values (seq_sr_option.nextval, 'room', '가스레인지'); --10
+insert into sr_option values (seq_sr_option.nextval, 'room', '옷장'); --11
+insert into sr_option values (seq_sr_option.nextval, 'room', '전자레인지'); --12
+insert into sr_option values (seq_sr_option.nextval, 'room', '비데'); --13
+insert into sr_option values (seq_sr_option.nextval, 'room', '정수기'); --14
+insert into sr_option values (seq_sr_option.nextval, 'etc', '반려동물가능'); --15
+insert into sr_option values (seq_sr_option.nextval, 'etc', '주차가능'); --16
+insert into sr_option values (seq_sr_option.nextval, 'etc', 'CCTV'); --17
+insert into sr_option values (seq_sr_option.nextval, 'etc', '화재경보기'); --18
+insert into sr_option values (seq_sr_option.nextval, 'etc', '엘리베이터'); --19
+
+select*from sr_option;
 
 insert into sr_tag values (seq_sr_tag.nextval, '3','고양이');
 insert into sr_tag values (seq_sr_tag.nextval, '3','반려동물');
@@ -713,6 +716,7 @@ insert into sr_room_option values(seq_sr_room_option.nextval, 100,2);
 insert into sr_room_option values(seq_sr_room_option.nextval, 100,7);
 insert into sr_room_option values(seq_sr_room_option.nextval, 100,8);
 insert into sr_room_option values(seq_sr_room_option.nextval, 100,10);
+<<<<<<< HEAD
 
 update sr_room set mem_id='1' where room_id=1 or room_id=3 or room_id=5 or room_id=7 or room_id=9;
 update sr_room set mem_id='1' where room_id=11 or room_id=13 or room_id=15 or room_id=17 or room_id=19;
@@ -726,3 +730,109 @@ update sr_room set mem_id='1' where room_id=81 or room_id=83 or room_id=85 or ro
 update sr_room set mem_id='1' where room_id=91 or room_id=93 or room_id=95 or room_id=97 or room_id=99;
 
 select*from sr_room
+=======
+insert into sr_room_option values(seq_sr_room_option.nextval, 90, 16);
+
+
+insert into sr_room_option values (seq_sr_room_option.nextval, 1, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 2, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 3, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 4, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 5, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 6, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 7, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 8, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 9, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 10, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 11, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 12, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 13, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 14, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 15, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 16, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 17, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 18, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 19, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 20, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 21, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 22, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 23, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 24, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 25, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 26, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 27, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 28, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 29, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 30, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 31, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 32, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 33, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 34, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 35, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 36, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 37, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 38, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 39, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 40, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 41, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 42, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 43, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 44, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 45, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 46, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 47, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 48, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 49, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 50, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 51, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 52, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 53, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 54, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 55, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 56, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 57, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 58, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 59, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 60, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 61, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 62, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 63, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 64, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 65, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 66, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 67, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 68, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 69, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 70, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 71, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 72, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 73, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 74, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 75, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 76, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 77, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 78, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 79, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 80, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 81, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 82, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 83, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 84, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 85, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 86, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 87, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 88, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 89, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 90, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 91, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 92, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 93, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 94, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 95, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 96, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 97, 17);
+insert into sr_room_option values (seq_sr_room_option.nextval, 98, 18);
+insert into sr_room_option values (seq_sr_room_option.nextval, 99, 19);
+insert into sr_room_option values (seq_sr_room_option.nextval, 100, 17);
+
+>>>>>>> 6a9fcb478eaca56163d2888537c55fd67c78af6e

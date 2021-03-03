@@ -77,5 +77,4 @@ public class RoomDetailVO {
 		this.room_indate = room_indate;
 	}
 	
-	
 }

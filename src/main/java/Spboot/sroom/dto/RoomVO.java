@@ -10,6 +10,9 @@ public class RoomVO {
 	private String room_images;
 	private int room_deposit;
 	private int room_rent;
+	private int mem_age;
+	private String mem_gender;
+	private String mem_confirm;
 	public int getRoom_id() {
 		return room_id;
 	}
@@ -46,5 +49,22 @@ public class RoomVO {
 	public void setRoom_rent(int room_rent) {
 		this.room_rent = room_rent;
 	}
-	
+	public int getMem_age() {
+		return mem_age;
+	}
+	public void setMem_age(int mem_age) {
+		this.mem_age = mem_age;
+	}
+	public String getMem_gender() {
+		return mem_gender;
+	}
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
+	}
+	public String getMem_confirm() {
+		return mem_confirm;
+	}
+	public void setMem_confirm(String mem_confirm) {
+		this.mem_confirm = mem_confirm;
+	}
 }
