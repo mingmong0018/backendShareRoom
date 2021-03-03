@@ -1,18 +1,30 @@
 package Spboot.sroom.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.swing.filechooser.FileSystemView;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import Spboot.sroom.dto.MemberVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
@@ -46,25 +58,48 @@ public class MemberController {
 	IJwtUtil jwtUtil;
 	@Autowired
 	IUseRedis useRedis;
+
 	
 	@RequestMapping(value="/updateMember",method= {RequestMethod.POST})
-	public String updateMember(
-			@RequestParam(value = "id") String id,
-			@RequestParam(value = "email") String email,
-			@RequestParam(value = "nickname") String nickname,
-			@RequestParam(value = "age") int age) {
-		System.out.println(id+email+nickname+age);
-		MemberVO mvo=new MemberVO();
-		mvo.setMem_id(id);
-		mvo.setMem_nickname(nickname);
-		mvo.setMem_age(age);
-		ms.updateMember(mvo);
+	public String updateMember(HttpServletRequest request) {
+		String savePath=request.getServletContext().getRealPath("upload");
+		System.out.println(request.getContextPath());
+		int sizeLimit=10*1024*1024;
+		try {
+			MultipartRequest multi=new MultipartRequest(request,savePath,sizeLimit,"UTF-8",new DefaultFileRenamePolicy());
+			String id=multi.getParameter("id");
+			char gender=multi.getParameter("gender").charAt(0);
+			int age=Integer.parseInt(multi.getParameter("age"));
+			String nickname=multi.getParameter("nickname");
+			String image=null;
+			MemberVO mvo=new MemberVO();
+			mvo.setMem_id(id);
+			mvo.setMem_nickname(nickname);
+			mvo.setMem_gender(gender);
+			mvo.setMem_age(age);
+			
+			if(multi.getFilesystemName("image")!=null) {
+				image=multi.getFilesystemName("image");
+				
+				mvo.setMem_image("http://localhost:8070/upload/"+image);
+				ms.updateMember(mvo);
+				System.out.println("이미지 있으");
+			}else {
+				ms.updateMemberWithOutImage(mvo);
+				System.out.println("이미지 없으");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println("나 작동됐니..?");
 		return "success";
 	}
 	
 	@RequestMapping(value="/getMember",method= {RequestMethod.POST})
 	public MemberVO getMember(@RequestParam(value = "id") String id) {
+		System.out.println("나 작동됐니..?222");
 		return ms.getMember(id);
 	}
 	
@@ -142,11 +177,10 @@ public class MemberController {
 //	                String result = (String) vop.get(id);
 //	                useRedis=new UseRedis();
 	                useRedis.setField(id,JWTtoken);
-	                
 	                System.out.print("redis:"+useRedis.getField(id));
-	                String result=useRedis.getField(id);
-	                System.out.println("result : "+result);
-	                
+
+
+
 	
 			return JWTtoken+","+name+","+id;
 			

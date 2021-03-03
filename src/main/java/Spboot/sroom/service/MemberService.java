@@ -74,5 +74,11 @@ public class MemberService implements IMemberService{
 	public void updateMember(MemberVO mvo) {
 		mdao.updateMember(mvo);
 	}
+
+	@Override
+	public void updateMemberWithOutImage(MemberVO mvo) {
+		mdao.updateMemberWithOutImage(mvo);
+		
+	}
 	}
 

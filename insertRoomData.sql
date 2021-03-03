@@ -3,6 +3,9 @@
 insert into sr_member(mem_id,  mem_name, mem_age, mem_nickname, mem_gender) 
 values('0', '테스트', '30', 'testNickname', 'f');
 
+insert into sr_member(mem_id, mem_name, mem_age, mem_nickname, mem_gender, mem_confirm) 
+values('1', '테스트_미인증', '20', 'noconfirmTest', 'm', 'y');
+
 delete from sr_room
 
 select*from sr_room
