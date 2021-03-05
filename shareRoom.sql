@@ -20,8 +20,7 @@
 --drop sequence seq_sr_tag;
 --drop sequence seq_sr_notice;
 --drop sequence seq_sr_notify;
-update sr_member set mem_email='mingmong@nate.com', mem_nickname='김민즁', 
-		mem_age=23 where mem_id='google_110756038095356896059';
+update sr_member set mem_age=0 where mem_id='google_110756038095356896059';
 
 		select * from sr_member where mem_id='google_110756038095356896059';
 

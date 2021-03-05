@@ -33,7 +33,11 @@ public class NaverUserInfo implements UserInfo{
 
 	@Override
 	public int getAge() {
-		int age = Integer.parseInt(userInfoElement.getAsJsonObject().get("response").getAsJsonObject().get("birthyear").getAsString());
+		int age = 0;
+		if(userInfoElement.getAsJsonObject().get("response").getAsJsonObject().get("birthyear").getAsString()!=null) {
+			age = Integer.parseInt(userInfoElement.getAsJsonObject().get("response").getAsJsonObject().get("birthyear").getAsString());
+		}
+		
 		return age;
 	}
 

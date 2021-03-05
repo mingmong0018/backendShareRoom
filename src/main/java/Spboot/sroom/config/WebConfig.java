@@ -22,6 +22,7 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(jwtAuthIntercepter)
 					.addPathPatterns("/*")
 					.excludePathPatterns(
+							"/upload/**",
 							"/login",
 							"/listRoom",
 							"/roomDetail",

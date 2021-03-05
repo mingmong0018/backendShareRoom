@@ -33,13 +33,16 @@ public class GoogleUserInfo implements UserInfo{
 
 	@Override
 	public int getAge() {
-		int age = Integer.parseInt(userInfoElement.getAsJsonObject().get("birthdays").getAsJsonArray().get(0).getAsJsonObject().get("date").getAsJsonObject().get("year").getAsString());
+		int age =Integer.parseInt(userInfoElement.getAsJsonObject().get("birthdays").getAsJsonArray().get(0).getAsJsonObject().get("date").getAsJsonObject().get("year").getAsString());
 		return age;
 	}
 
 	@Override
 	public char getGender() {
-		char gender=userInfoElement.getAsJsonObject().get("genders").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString().charAt(0);
+		char gender='A';
+		if(!(userInfoElement.getAsJsonObject().get("genders").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString().equals("unspecified"))) {
+			gender=userInfoElement.getAsJsonObject().get("genders").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString().charAt(0);
+		}
 		return gender;
 	}
 
