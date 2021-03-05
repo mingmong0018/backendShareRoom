@@ -6,8 +6,7 @@ create table member1 (
 insert into member1 values('minjung', '1234');
 insert into member1 values('hana', '1111');
 
-insert into sr_member(mem_id, mem_email, mem_name, mem_age, mem_nickname, mem_gender) 
-values('1', 'test1@test.com', '테스트_미인증', '20', 'noconfirmTest', 'm')
+update sr_member set mem_confirm='y' where mem_id='0';
 
 update sr_room set mem_id='1' where room_id=1 or room_id=3 or room_id=5 or room_id=7 or room_id=9;
 update sr_room set mem_id='1' where room_id=11 or room_id=13 or room_id=15 or room_id=17 or room_id=19;
