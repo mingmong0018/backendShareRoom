@@ -5,6 +5,9 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,30 +73,39 @@ public class RoomController {
 	
 
 	
-	@RequestMapping(value="/wish", method={RequestMethod.GET})
-    public boolean getWishList(
+	@GetMapping(value="/wish")
+    public boolean getWishRoom(
     		@RequestParam(value = "id") String mem_id,
     		@RequestParam(value = "roomId") int room_id
     		) {
-		boolean wish = rs.getWishList(mem_id,room_id);
+		boolean wish = rs.getWishRoom(mem_id,room_id);
 		return wish;
 	}
 	
-	@RequestMapping(value="/wish", method={RequestMethod.POST})
+	@PostMapping(value="/wish")
     public void insertWishList(
     		@RequestParam(value = "id") String mem_id,
     		@RequestParam(value = "roomId") int room_id
     		) {
+		System.out.print("room"+room_id);
 		rs.insertWishList(mem_id,room_id);
 	}
 	
-	@RequestMapping(value="/wish", method={RequestMethod.DELETE})
+	@DeleteMapping(value="/wish")
     public void deleteWishList(
     		@RequestParam(value = "id") String mem_id,
     		@RequestParam(value = "roomId") int room_id
     		) {
-		System.out.print(room_id);
+		System.out.print("room"+room_id);
 		rs.deleteWishList(mem_id,room_id);
+	}
+	
+	@GetMapping(value="/wishList")
+    public List<RoomVO> wishlistAll(
+    		@RequestParam(value = "id") String mem_id
+    		) {
+		List<RoomVO> wishRooms = rs.getWishRoomAll(mem_id);
+		return wishRooms;
 	}
 	
 	/*

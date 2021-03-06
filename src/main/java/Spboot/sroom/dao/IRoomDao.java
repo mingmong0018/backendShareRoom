@@ -8,6 +8,7 @@ import Spboot.sroom.dto.RoomDetailVO;
 import Spboot.sroom.dto.RoomOptionVO;
 import Spboot.sroom.dto.RoomTagVO;
 import Spboot.sroom.dto.RoomVO;
+import Spboot.sroom.dto.WishListVO;
 
 @Mapper
 public interface IRoomDao {
@@ -16,7 +17,8 @@ public interface IRoomDao {
 	public List<RoomTagVO> getRoomTag(int roomId);
 	public List<RoomOptionVO> getRoomOption(int roomId);
 	public void insertKeyword(String mem_id, String keyword);
-	public int getWishRoom(String mem_id, int room_id);
+	public Integer getWishRoom(String mem_id, int room_id);
 	public void insertWishList(String mem_Id, int room_id);
 	public void deleteWishList(String mem_Id, int room_id);
+	public List<RoomVO> getWishList(String mem_id);
 }

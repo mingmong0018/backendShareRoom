@@ -42,7 +42,6 @@ public class JwtAuthIntercepter implements HandlerInterceptor{
 				return false;
 			}
 		}catch(Exception e) {
-			
 			System.out.println("preHandle false2 작동");
 			return false;
 		}

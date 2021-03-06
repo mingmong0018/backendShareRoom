@@ -83,7 +83,8 @@ create 	sequence	seq_sr_room_option	start with 1 increment by 1;
 						
 create 	table 	sr_wish_list(	wish_id	 number(6) 	primary key,	
 			mem_id	 varchar2(50) 	references 	sr_member(mem_id) ,
-			room_id	 number(6) 	references 	sr_room(room_id)) ;
+			room_id	 number(6) 	references 	sr_room(room_id),
+			wish_indate timeStamp default sysdate);
 create 	sequence	seq_sr_wish_list start with 1 increment by 1;	
 						
 create 	table 	sr_tag(	tag_id	 number(10) 	primary key,	

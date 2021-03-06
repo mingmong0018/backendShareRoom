@@ -23,6 +23,26 @@ select*from sr_room
 
 select*from sr_member
 
+select*from sr_wish_list
+
+select room_id from sr_wish_list where mem_id='google_102053069059577066310'
+
+select a.room_id, a.room_title, a.room_address, a.room_deposit, a.room_rent, a.room_images,
+		b.mem_age, b.mem_gender, b.mem_confirm, c.wish_indate
+		from sr_room a
+		inner join sr_member b
+		on a.mem_id=b.mem_id
+		inner join sr_wish_list c
+		on a.room_id=c.room_id
+		where c.mem_id='google_102053069059577066310'
+ 		order by c.wish_indate desc
+
+ALTER TABLE sr_wish_list ADD wish_indate TIMESTAMP default sysdate;
+
+delete from sr_wish_list where wish_id=2 or wish_id=3
+
+select room_id from sr_wish_list where mem_id='google_102053069059577066310' and room_id=3
+
 select a.room_id, a.room_title, a.room_address, a.room_deposit, a.room_rent, a.room_images,
 		b.mem_age, b.mem_gender, b.mem_confirm
 		from sr_room a, sr_member b where a.mem_id=b.mem_id order by room_id
