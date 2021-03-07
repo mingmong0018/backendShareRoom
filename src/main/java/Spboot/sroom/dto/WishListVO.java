@@ -1,5 +1,7 @@
 package Spboot.sroom.dto;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
@@ -7,6 +9,7 @@ public class WishListVO {
 	private int wish_id;	
 	private String mem_id;
 	private int room_id;
+	private Timestamp wish_indate;
 	public int getWish_id() {
 		return wish_id;
 	}
@@ -24,5 +27,11 @@ public class WishListVO {
 	}
 	public void setRoom_id(int room_id) {
 		this.room_id = room_id;
+	}
+	public Timestamp getWish_indate() {
+		return wish_indate;
+	}
+	public void setWish_indate(Timestamp wish_indate) {
+		this.wish_indate = wish_indate;
 	}
 }

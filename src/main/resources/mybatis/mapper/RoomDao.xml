@@ -26,15 +26,27 @@
 	
 	
 	
-	<select id="getWishRoom">
+	<select id="getWishRoom" resultType="Integer">
 		select room_id from sr_wish_list where mem_id=#{param1} and room_id=#{param2}
 	</select>
 	
 	<insert id="insertWishList">
-		insert into sr_wish_list values(seq_sr_wish_list.nextval, #{param1}, #{param2})
+		insert into sr_wish_list(wish_id, mem_id, room_id) values(seq_sr_wish_list.nextval, #{param1}, #{param2})
 	</insert>
 	
 	<delete id="deleteWishList">
 		delete from sr_wish_list where mem_id=#{param1} and room_id=#{param2}
 	</delete>
+	
+	<select id="getWishList" resultType="Spboot.sroom.dto.RoomVO">
+		select a.room_id, a.room_title, a.room_address, a.room_deposit, a.room_rent, a.room_images,
+		b.mem_age, b.mem_gender, b.mem_confirm, c.wish_indate
+		from sr_room a
+		inner join sr_member b
+		on a.mem_id=b.mem_id
+		inner join sr_wish_list c
+		on a.room_id=c.room_id
+		where c.mem_id=#{param1}
+ 		order by c.wish_indate desc
+	</select>
 </mapper>

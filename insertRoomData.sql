@@ -77,11 +77,11 @@ insert into sr_room values(seq_sr_room.nextval, '0','이수역 5분 쓰리룸 �
 =======
 --<<테스트사용자>>
 
-insert into sr_member(mem_id,  mem_name, mem_age, mem_nickname, mem_gender) 
-values('0', '테스트', '30', 'testNickname', 'f');
+insert into sr_member(mem_id,  mem_name, mem_age, mem_nickname, mem_gender, mem_confirm) 
+values('0', '테스트', '30', 'testNickname', 'f', 'y');
 
-insert into sr_member(mem_id, mem_name, mem_age, mem_nickname, mem_gender, mem_confirm) 
-values('1', '테스트_미인증', '20', 'noconfirmTest', 'm', 'y');
+insert into sr_member(mem_id, mem_name, mem_age, mem_nickname, mem_gender) 
+values('1', '테스트_미인증', '20', 'noconfirmTest', 'm');
 
 delete from sr_room
 
