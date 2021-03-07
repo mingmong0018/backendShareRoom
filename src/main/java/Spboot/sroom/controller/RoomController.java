@@ -75,21 +75,23 @@ public class RoomController {
 	}
 	
 	@PostMapping(value="/wish")
-    public void insertWishList(
+    public String insertWishList(
     		@RequestParam(value = "id") String mem_id,
     		@RequestParam(value = "roomId") int room_id
     		) {
 		System.out.print("room"+room_id);
 		rs.insertWishList(mem_id,room_id);
+		return "1";
 	}
 	
 	@DeleteMapping(value="/wish")
-    public void deleteWishList(
+    public String deleteWishList(
     		@RequestParam(value = "id") String mem_id,
     		@RequestParam(value = "roomId") int room_id
     		) {
 		System.out.print("room"+room_id);
 		rs.deleteWishList(mem_id,room_id);
+		return "1";
 	}
 	
 	@GetMapping(value="/wishList")
