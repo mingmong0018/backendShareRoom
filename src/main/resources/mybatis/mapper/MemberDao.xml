@@ -5,6 +5,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="Spboot.sroom.dao.IMemberDao">
+	<delete id="deleteAllKeyword">
+		delete from sr_keyword where memId=#{param1} 
+	</delete>
+	<delete id="deleteKeyword">
+		delete from sr_keyword where memId=#{param1} and keywordId=#{param2}
+	</delete>
+	<select id="getAllKeyword" resultType="Spboot.sroom.dto.KeywordVO">
+		select * from sr_keyword where memId=#{param1}
+	</select>
+	<insert id="insertKeyword">
+		insert into sr_keyword(keywordId, memId, keywordContent) values(seq_sr_keyword.nextval, #{memId}, #{keywordContent})
+	</insert>
 	<update id="updateMemberWithOutImage" parameterType="Spboot.sroom.dto.MemberVO">
 		update sr_member set mem_nickname=#{mem_nickname}, 
 		mem_age=#{mem_age},  mem_gender=#{mem_gender} where mem_id=#{mem_id}

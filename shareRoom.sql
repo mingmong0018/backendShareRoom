@@ -111,9 +111,8 @@ create 	table 	sr_notify(	notify_id 	 number(6) 	primary key,
 			notify_indate 	 timestamp 	 default 	sysdate) ;
 create 	sequence	seq_sr_notify	start with 1 increment by 1;	
 
-create 	table 	sr_keyword(	keyword_id 	number(10) 	primary key,	
-			mem_id 	varchar2(50) 	references 	sr_member(mem_id),
-			keyword_content 	varchar2(100) 	not null,	
-			keyword_indate 	timestamp 	default sysdate);	
-create 	sequence	seq_sr_keyword	increment by 	1;
-
+create 	table 	sr_keyword(	keywordId 	number(10) 	primary key,	
+			memId 	varchar2(50) 	references 	sr_member(mem_id),
+			keywordContent 	varchar2(100) 	not null,	
+			keywordIndate 	timestamp 	default sysdate);	
+create 	sequence	seq_sr_keyword increment by 1;

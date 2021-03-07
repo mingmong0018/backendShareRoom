@@ -52,14 +52,6 @@ public class RoomController {
 		return option;
 	}
 	
-	@RequestMapping(value="/keyword", method={RequestMethod.POST})
-    public void insertKeyword(
-    		@RequestParam(value = "keyword") String keyword,
-    		@RequestParam(value = "id") String mem_id
-    		) {
-		rs.insertKeyword(mem_id, keyword);
-	}
-	
 	@RequestMapping(value="/writer", method={RequestMethod.GET})
     public MemberVO getRoomWriter(
     		@RequestParam(value = "id") String mem_id

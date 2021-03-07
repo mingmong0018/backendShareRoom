@@ -28,7 +28,6 @@ public class WebConfig implements WebMvcConfigurer{
 							"/roomDetail",
 							"/roomTag",
 							"/roomOption",
-							"/keyword",
 							"/writer"
 							);
 	}

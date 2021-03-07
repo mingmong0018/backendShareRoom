@@ -40,11 +40,6 @@ public class RoomService implements IRoomService{
 	}
 
 	@Override
-	public void insertKeyword(String mem_id, String keyword) {
-		rdao.insertKeyword(mem_id, keyword);
-	}
-
-	@Override
 	public boolean getWishList(String mem_id, int room_id) {
 		String roomId = String.valueOf(rdao.getWishRoom(mem_id, room_id));
 		if(roomId!="") return true;

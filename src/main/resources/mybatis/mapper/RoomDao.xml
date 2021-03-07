@@ -24,9 +24,7 @@
 		where room_id=#{param1} and a.option_id=b.option_id
 	</select>
 	
-	<insert id="insertKeyword">
-		insert into sr_keyword(keyword_id, mem_id, keyword_content) values(seq_sr_keyword.nextval, #{param1}, #{param2})
-	</insert>
+	
 	
 	<select id="getWishRoom">
 		select room_id from sr_wish_list where mem_id=#{param1} and room_id=#{param2}

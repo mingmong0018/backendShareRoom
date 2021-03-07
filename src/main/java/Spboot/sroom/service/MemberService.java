@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import Spboot.sroom.dao.IMemberDao;
 import Spboot.sroom.dao.IRoomDao;
+import Spboot.sroom.dto.KeywordVO;
 import Spboot.sroom.dto.MemberVO;
 
 
@@ -78,6 +80,29 @@ public class MemberService implements IMemberService{
 	@Override
 	public void updateMemberWithOutImage(MemberVO mvo) {
 		mdao.updateMemberWithOutImage(mvo);
+		
+	}
+
+	@Override
+	public void insertKeyword(KeywordVO kvo) {
+		mdao.insertKeyword(kvo);
+		
+	}
+
+	@Override
+	public List<KeywordVO> getAllKeyword(String id) {
+		return mdao.getAllKeyword(id);
+	}
+
+	@Override
+	public void deleteAllKeyword(String id) {
+		mdao.deleteAllKeyword(id);
+		
+	}
+
+	@Override
+	public void deleteKeyword(String id, int keyword_id) {
+		mdao.deleteKeyword(id,keyword_id);
 		
 	}
 	}

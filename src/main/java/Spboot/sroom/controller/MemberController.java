@@ -3,16 +3,17 @@ package Spboot.sroom.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.filechooser.FileSystemView;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,9 @@ import com.google.gson.JsonParser;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import Spboot.sroom.dto.KeywordVO;
 import Spboot.sroom.dto.MemberVO;
+import Spboot.sroom.dto.RoomVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
 import Spboot.sroom.oauth.KakaoUserInfo;
 import Spboot.sroom.oauth.NaverUserInfo;
@@ -50,15 +53,41 @@ public class MemberController {
 	UserInfo userInfo;
 	
 	
-	
-//	@Autowired
-//	RedisTemplate<String,Object> redisTemplate;
-	
 	@Autowired
 	IJwtUtil jwtUtil;
 	@Autowired
 	IUseRedis useRedis;
+	
+	@RequestMapping(value="/deleteKeyword",method= {RequestMethod.POST})
+	public String deleteKeyword(@RequestParam(value = "id") String id,
+											   @RequestParam(value = "keywordSq") int keyword_id) {
+		ms.deleteKeyword(id,keyword_id);
+		return "1";
+		
+	}
+	@RequestMapping(value="/deleteAllKeyword",method= {RequestMethod.POST})
+	public String deleteAllKeyword(@RequestParam(value = "id") String id) {
+		ms.deleteAllKeyword(id);
+		return "1";
+		
+	}
+	
+	@RequestMapping(value="/getAllSearchText",method= {RequestMethod.POST})
+	public List<KeywordVO> getAllSearchText(@RequestParam(value = "id") String id) {
+		List<KeywordVO> keyword=ms.getAllKeyword(id);
+		return keyword;
+		
+	}
 
+	@RequestMapping(value="/savingSearchText",method= {RequestMethod.POST})
+	public void savingSearchText(@RequestParam(value = "id") String id,
+			@RequestParam(value = "searchText") String text) {
+		KeywordVO kvo=new KeywordVO();
+		kvo.setMemId(id);
+		kvo.setKeywordContent(text);
+		ms.insertKeyword(kvo);
+		
+	}
 	
 	@RequestMapping(value="/updateMember",method= {RequestMethod.POST})
 	public String updateMember(HttpServletRequest request) {
@@ -97,7 +126,7 @@ public class MemberController {
 		return "success";
 	}
 	
-	@RequestMapping(value="/getMember",method= {RequestMethod.POST})
+	@GetMapping(value="/getMember")
 	public MemberVO getMember(@RequestParam(value = "id") String id) {
 		System.out.println("나 작동됐니..?222");
 		return ms.getMember(id);

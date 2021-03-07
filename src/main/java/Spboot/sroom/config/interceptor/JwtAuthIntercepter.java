@@ -28,6 +28,8 @@ public class JwtAuthIntercepter implements HandlerInterceptor{
 			String givenJWT = null;
 			String id = null,redisJWT=null,verifyJWT=null;
 			
+			System.out.println(request.getHeader("Authorization"));
+			
 			try {	
 			if(((basicConfirm=request.getHeader("Authorization").substring(0, 7)).equals("Bearer "))
 					&&((givenJWT=request.getHeader("Authorization").substring(7))!=null)
