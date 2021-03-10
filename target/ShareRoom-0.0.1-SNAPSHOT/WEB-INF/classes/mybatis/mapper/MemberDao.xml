@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Spboot.sroom.dao.IMemberDao">
+	<delete id="deleteAllKeyword">
+		delete from sr_keyword where memId=#{param1} 
+	</delete>
+	<delete id="deleteKeyword">
+		delete from sr_keyword where memId=#{param1} and keywordId=#{param2}
+	</delete>
+	<select id="getAllKeyword" resultType="Spboot.sroom.dto.KeywordVO">
+		select * from sr_keyword where memId=#{param1}
+	</select>
+	<insert id="insertKeyword">
+		insert into sr_keyword(keywordId, memId, keywordContent) values(seq_sr_keyword.nextval, #{memId}, #{keywordContent})
+	</insert>
+	<update id="updateMemberWithOutImage" parameterType="Spboot.sroom.dto.MemberVO">
+		update sr_member set mem_nickname=#{mem_nickname}, 
+		mem_age=#{mem_age},  mem_gender=#{mem_gender} where mem_id=#{mem_id}
+	</update>
+	<update id="updateMember" parameterType="Spboot.sroom.dto.MemberVO">
+		update sr_member set mem_nickname=#{mem_nickname}, 
+		mem_age=#{mem_age},  mem_gender=#{mem_gender},  mem_image=#{mem_image} where mem_id=#{mem_id}
+	</update>
+	<select id="getMember" resultType="Spboot.sroom.dto.MemberVO">
+		select * from sr_member where mem_id=#{param1}
+	</select>
+	<select id="searchMember" resultType="String">
+		select mem_id from sr_member where mem_id=#{param1}
+	</select>
+	<insert id="insertMember">
+		insert into sr_member(mem_id,mem_name,mem_nickname,mem_age,mem_gender,mem_image) 
+		values(#{mem_id},#{mem_name},#{mem_nickname},#{mem_age},#{mem_gender},#{mem_image})
+	</insert>
+
+</mapper>
