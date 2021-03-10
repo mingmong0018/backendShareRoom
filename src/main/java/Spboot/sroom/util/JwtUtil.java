@@ -46,7 +46,7 @@ public class JwtUtil implements IJwtUtil{
 		System.out.println("SECRET : "+tokenSecret);
 		String token = null;
         try {
-            Long EXPIRATION_TIME = 1000L * 60L * 10L;
+            Long EXPIRATION_TIME = 1000L * 60L * 200L;
             Date issuedAt = new Date();
             Date notBefore = new Date(issuedAt.getTime());
             Date expiresAt = new Date(issuedAt.getTime() + EXPIRATION_TIME);
