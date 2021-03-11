@@ -100,9 +100,11 @@ public class MemberController {
 			char gender=multi.getParameter("gender").charAt(0);
 			int age=Integer.parseInt(multi.getParameter("age"));
 			String nickname=multi.getParameter("nickname");
+			String email=multi.getParameter("email");
 			String image=null;
 			MemberVO mvo=new MemberVO();
 			mvo.setMem_id(id);
+			mvo.setMem_email(email);
 			mvo.setMem_nickname(nickname);
 			mvo.setMem_gender(gender);
 			mvo.setMem_age(age);
@@ -166,25 +168,26 @@ public class MemberController {
 	                userInfo.setField(userInfoElement);
 	                
 	//              필드에 값 넣기
-	                id = state+"_"+userInfo.getId();
-	                System.out.print("id:"+id);
+	               
 	                Calendar cal=Calendar.getInstance();
 	                int year=cal.get(Calendar.YEAR);
 	                age = year-userInfo.getAge()+1;
 	                if(userInfo.getAge()==0) {
 	                	age=0;
 	                }
+	                id = state+"_"+userInfo.getId();
 	                name=userInfo.getName();
 	                profile_image = userInfo.getImage();
 	                gender = userInfo.getGender();
-	                if(userInfo.getGender()=='A') {
-	                	gender='A';
-	                }
-	                System.out.println(id+"\n"+age+"\n"+name+profile_image+gender);
+	                email=userInfo.getEmail();
+	                
+	                System.out.println(id+"\n"+age+"\n"+name+profile_image+gender+email);
 	 
 	//              회원가입 안되어있으면
 	                if(!id.equals(ms.searchMember(id))){
+	               
 	                mvo.setMem_id(id);
+	                mvo.setMem_email(email);
 	                mvo.setMem_name(name);
 	                mvo.setMem_nickname(name);
 	                mvo.setMem_age(age);

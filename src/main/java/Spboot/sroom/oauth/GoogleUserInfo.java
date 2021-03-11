@@ -8,7 +8,7 @@ public class GoogleUserInfo implements UserInfo{
 
 	@Override
 	public String getAccessTokenApiURL() {
-		String accessTokenApiURL="https://people.googleapis.com/v1/people/me?personFields=genders%2Cbirthdays%2Cnames%2Cphotos";
+		String accessTokenApiURL="https://people.googleapis.com/v1/people/me?personFields=genders%2Cbirthdays%2Cnames%2Cphotos%2CemailAddresses";
 		return accessTokenApiURL;
 	}
 
@@ -39,7 +39,7 @@ public class GoogleUserInfo implements UserInfo{
 
 	@Override
 	public char getGender() {
-		char gender='A';
+		char gender='\0';
 		if(!(userInfoElement.getAsJsonObject().get("genders").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString().equals("unspecified"))) {
 			gender=userInfoElement.getAsJsonObject().get("genders").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString().charAt(0);
 		}
@@ -50,6 +50,14 @@ public class GoogleUserInfo implements UserInfo{
 	public String getImage() {
 		String image=userInfoElement.getAsJsonObject().get("photos").getAsJsonArray().get(0).getAsJsonObject().get("url").getAsString();
 		return image;
+	}
+
+
+
+	@Override
+	public String getEmail() {
+		String email=userInfoElement.getAsJsonObject().get("emailAddresses").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString();
+		return email;
 	}
 
 }

@@ -26,15 +26,16 @@ update sr_member set mem_age=0 where mem_id='google_110756038095356896059';
 
 update sr_member set mem_nickname='김민정' where mem_id='google_110756038095356896059';
 
-select*from sr_room
+select*from sr_member
 
 
 create 	table 	sr_member(	mem_id	 varchar2(50) 	primary key,	
+			mem_email varchar2(60) ,
 			mem_name	 varchar2(20) 	not null,	
-			mem_age	 number(3)	not null,	
+			mem_age	 number(3),	
 			mem_nickname	 varchar2(15 char) 	not null,	
 			mem_image	 varchar2(200) default 'noProfile.jpg',		
-			mem_gender	 char(1), check(mem_gender in('f', 'm')),
+			mem_gender	 char(1), check(mem_gender in('f', 'm',null)),
 			mem_confirm	 char(1) 	 default 'n',	check(mem_confirm in('y', 'n')) ,
 			mem_indate 	 timestamp 	 default 	sysdate) ;		
 						

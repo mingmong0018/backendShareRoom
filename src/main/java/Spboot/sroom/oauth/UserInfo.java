@@ -3,6 +3,7 @@ package Spboot.sroom.oauth;
 import com.google.gson.JsonElement;
 
 public interface UserInfo {
+	public String getEmail();
 	public String getAccessTokenApiURL();
 	public String getId();
 	public String getName();

@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	String mem_id;
+	String mem_email;
 	String mem_name;	
 	int mem_age;
 	String mem_nickname;
@@ -14,6 +15,13 @@ public class MemberVO {
 	char mem_gender;
 	String mem_confirm;
 	Timestamp mem_indate;
+	
+	public String getMem_email() {
+		return mem_email;
+	}
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}
