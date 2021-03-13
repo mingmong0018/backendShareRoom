@@ -1,5 +1,5 @@
-insert into sr_option values (seq_sr_option.nextval, 'room', '냉장고'); --1
-insert into sr_option values (seq_sr_option.nextval, 'room', '세탁기'); --2
+insert into sr_option values (seq_sr_option.nextval, 'room', '냉장고'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '세탁기'); 
 insert into sr_option values (seq_sr_option.nextval, 'room', '책상'); --3
 insert into sr_option values (seq_sr_option.nextval, 'room', '침대'); --4
 insert into sr_option values (seq_sr_option.nextval, 'room', 'TV'); --5
