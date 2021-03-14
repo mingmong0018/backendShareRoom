@@ -21,7 +21,7 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry cr) {
 		cr.addMapping("/**")
-		.allowedOrigins("http://http://shareroom-frontend.s3-website.ap-northeast-2.amazonaws.com:80")  // 허용할 주소 및 포트
+		.allowedOrigins("http://shareroom-frontend.s3-website.ap-northeast-2.amazonaws.com")  // 허용할 주소 및 포트
 		.allowedOrigins("http://localhost:8081");  // 허용할 주소 및 포트
 	}
 
