@@ -3,13 +3,11 @@ package Spboot.sroom.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import Spboot.sroom.config.interceptor.JwtAuthIntercepter;
 
 @Component
-@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{
 	
 	@Autowired
@@ -21,8 +19,8 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry cr) {
 		cr.addMapping("/**")
-		.allowedOrigins("http://shareroom-frontend.s3-website.ap-northeast-2.amazonaws.com")  // 허용할 주소 및 포트
-		.allowedOrigins("http://localhost:8081");  // 허용할 주소 및 포트
+		.allowedOrigins("*")
+        .allowedMethods("GET", "POST","DELETE");
 	}
 
 	
