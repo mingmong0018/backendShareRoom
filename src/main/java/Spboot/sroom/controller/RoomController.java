@@ -192,7 +192,6 @@ public class RoomController {
 	@PutMapping(value="/room")
 	public int updateRoom(HttpServletRequest request) {
 		String savePath=request.getServletContext().getRealPath("roomImages");
-		System.out.println(request.getContextPath());
 		int sizeLimit=1024*1024*1024;
 		int result=0;
 		try {
