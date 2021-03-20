@@ -10,7 +10,7 @@ public class KakaoUserInfo implements UserInfo{
 	
 	@Override
 	public String getAccessTokenApiURL() {
-		String accessTokenApiURL="https://kapi.kakao.com/v2/user/me?property_keys=[\"properties.nickname\",\"properties.profile_image\",\"kakao_account.gender\",\"kakao_account.age_range\"]";
+		String accessTokenApiURL="https://kapi.kakao.com/v2/user/me?property_keys=[\"properties.nickname\",\"properties.profile_image\",\"kakao_account.gender\",\"kakao_account.age_range\",\"kakao_account.email\"]";
 		return accessTokenApiURL;
 	}
 
@@ -48,7 +48,7 @@ public class KakaoUserInfo implements UserInfo{
 
 	@Override
 	public char getGender() {
-		char gender='A';
+		char gender='\0';
 		if(userInfoElement.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_gender").getAsString().equals("true") 
 				&&userInfoElement.getAsJsonObject().get("kakao_account").getAsJsonObject().get("gender_needs_agreement").getAsString().equals("false")) {
 			gender=userInfoElement.getAsJsonObject().get("kakao_account").getAsJsonObject().get("gender").getAsString().charAt(0);
@@ -60,6 +60,18 @@ public class KakaoUserInfo implements UserInfo{
 	public String getImage() {
 		String image=userInfoElement.getAsJsonObject().get("properties").getAsJsonObject().get("profile_image").getAsString();
 		return image;
+	}
+
+
+
+	@Override
+	public String getEmail() {
+		String email=null;
+		if(userInfoElement.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsString().equals("true") 
+				&&userInfoElement.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email_needs_agreement").getAsString().equals("false")) {
+			email=userInfoElement.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+		}
+		return email;
 	}
 
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Spboot.sroom.dao.IRoomDao">
+	<select id="getAllRoom" resultType="Spboot.sroom.dto.RoomVO">
+		select a.room_id, a.room_title, a.room_address, a.room_deposit, a.room_rent, a.room_images,
+		b.mem_age, b.mem_gender, b.mem_confirm
+		from sr_room a, sr_member b where a.mem_id=b.mem_id order by room_id
+	</select>
+	
+	<select id="getRoom" resultType="Spboot.sroom.dto.RoomDetailVO">
+		select*from sr_room where room_id=#{param1}
+	</select>
+	
+	<select id="getRoomTag" resultType="Spboot.sroom.dto.RoomTagVO">
+		select tag_id, tag_content from sr_tag where room_id=#{param1} order by tag_id
+	</select>
+	
+	<select id="getRoomOption" resultType="Spboot.sroom.dto.RoomOptionVO">
+		select a.room_id, b.option_id, b.option_group, b.option_name from sr_room_option a, sr_option b 
+		where room_id=#{param1} and a.option_id=b.option_id
+	</select>
+	
+	<delete id="deleteTag">
+		delete from sr_tag where room_id=#{param1}
+	</delete>
+	
+	<insert id="insertKeyword">
+		insert into sr_keyword(keyword_id, mem_id, keyword_content) values(seq_sr_keyword.nextval, #{param1}, #{param2})
+	</insert>
+	
+	<select id="getWishRoom" resultType="Integer">
+		select room_id from sr_wish_list where mem_id=#{param1} and room_id=#{param2}
+	</select>
+	
+	<insert id="insertWishList">
+		insert into sr_wish_list(wish_id, mem_id, room_id) values(seq_sr_wish_list.nextval, #{param1}, #{param2})
+	</insert>
+	
+	<delete id="deleteWishList">
+		delete from sr_wish_list where mem_id=#{param1} and room_id=#{param2}
+	</delete>
+	
+	<select id="getWishList" resultType="Spboot.sroom.dto.RoomVO">
+		select a.room_id, a.room_title, a.room_address, a.room_deposit, a.room_rent, a.room_images,
+		b.mem_age, b.mem_gender, b.mem_confirm, c.wish_indate
+		from sr_room a
+		inner join sr_member b
+		on a.mem_id=b.mem_id
+		inner join sr_wish_list c
+		on a.room_id=c.room_id
+		where c.mem_id=#{param1}
+ 		order by c.wish_indate desc
+	</select>
+	
+	<select id="getOptions" resultType="Spboot.sroom.dto.OptionVO">
+		select*from sr_option order by option_id
+	</select>
+	
+	<insert id="insertRoom" parameterType="Spboot.sroom.dto.RoomDetailVO">
+		insert into sr_room(room_id, mem_id, room_title, room_address, room_images, room_deposit, room_rent, room_report) 
+		values(seq_sr_room.nextval, #{mem_id}, #{room_title}, #{room_address}, #{room_images}, #{room_deposit}, #{room_rent}, #{room_report})
+	</insert>
+	
+	<select id="getInsertRoomId" resultType="Integer">
+		select room_id from sr_room where mem_id=#{param1}
+	</select>
+	
+	<select id="insertOption">
+		insert into sr_room_option values(seq_sr_room_option.nextval, #{param1}, #{param2})
+	</select>
+	
+	<delete id="deleteOption">
+		delete from sr_room_option where room_id=#{param1}
+	</delete>
+	
+	<update id="updateRoom">
+		update sr_room set room_title=#{param1}, room_address=#{param2}, room_images=#{param3}, 
+		room_deposit=#{param4}, room_rent=#{param5}, room_report=#{param6} where room_id=#{param7} 
+	</update>
+	
+	<select id="getMyRoom" resultType="Integer">
+		select room_id from sr_room where mem_id=#{param1}
+	</select>
+	
+	<insert id="insertTag">
+		insert into sr_tag values(seq_sr_tag.nextval, #{param1}, #{param2}) 
+	</insert>
+</mapper>

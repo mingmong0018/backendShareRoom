@@ -2,6 +2,7 @@ package Spboot.sroom.controller;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,7 @@ import com.google.gson.JsonParser;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import Spboot.sroom.dto.KeywordVO;
 import Spboot.sroom.dto.MemberVO;
 import Spboot.sroom.oauth.GoogleUserInfo;
 import Spboot.sroom.oauth.KakaoUserInfo;
@@ -43,15 +46,41 @@ public class MemberController {
 	UserInfo userInfo;
 	
 	
-	
-//	@Autowired
-//	RedisTemplate<String,Object> redisTemplate;
-	
 	@Autowired
 	IJwtUtil jwtUtil;
 	@Autowired
 	IUseRedis useRedis;
+	
+	@RequestMapping(value="/deleteKeyword",method= {RequestMethod.POST})
+	public String deleteKeyword(@RequestParam(value = "id") String id,
+											   @RequestParam(value = "keywordSq") int keyword_id) {
+		ms.deleteKeyword(id,keyword_id);
+		return "1";
+		
+	}
+	@RequestMapping(value="/deleteAllKeyword",method= {RequestMethod.POST})
+	public String deleteAllKeyword(@RequestParam(value = "id") String id) {
+		ms.deleteAllKeyword(id);
+		return "1";
+		
+	}
+	
+	@RequestMapping(value="/getAllSearchText",method= {RequestMethod.POST})
+	public List<KeywordVO> getAllSearchText(@RequestParam(value = "id") String id) {
+		List<KeywordVO> keyword=ms.getAllKeyword(id);
+		return keyword;
+		
+	}
 
+	@RequestMapping(value="/savingSearchText",method= {RequestMethod.POST})
+	public void savingSearchText(@RequestParam(value = "id") String id,
+			@RequestParam(value = "searchText") String text) {
+		KeywordVO kvo=new KeywordVO();
+		kvo.setMemId(id);
+		kvo.setKeywordContent(text);
+		ms.insertKeyword(kvo);
+		
+	}
 	
 	@RequestMapping(value="/updateMember",method= {RequestMethod.POST})
 	public String updateMember(HttpServletRequest request) {
@@ -64,9 +93,11 @@ public class MemberController {
 			char gender=multi.getParameter("gender").charAt(0);
 			int age=Integer.parseInt(multi.getParameter("age"));
 			String nickname=multi.getParameter("nickname");
+			String email=multi.getParameter("email");
 			String image=null;
 			MemberVO mvo=new MemberVO();
 			mvo.setMem_id(id);
+			mvo.setMem_email(email);
 			mvo.setMem_nickname(nickname);
 			mvo.setMem_gender(gender);
 			mvo.setMem_age(age);
@@ -90,7 +121,7 @@ public class MemberController {
 		return "success";
 	}
 	
-	@RequestMapping(value="/getMember",method= {RequestMethod.POST})
+	@GetMapping(value="/getMember")
 	public MemberVO getMember(@RequestParam(value = "id") String id) {
 		System.out.println("나 작동됐니..?222");
 		return ms.getMember(id);
@@ -130,25 +161,26 @@ public class MemberController {
 	                userInfo.setField(userInfoElement);
 	                
 	//              필드에 값 넣기
-	                id = state+"_"+userInfo.getId();
-	                System.out.print("id:"+id);
+	               
 	                Calendar cal=Calendar.getInstance();
 	                int year=cal.get(Calendar.YEAR);
 	                age = year-userInfo.getAge()+1;
 	                if(userInfo.getAge()==0) {
 	                	age=0;
 	                }
+	                id = state+"_"+userInfo.getId();
 	                name=userInfo.getName();
 	                profile_image = userInfo.getImage();
 	                gender = userInfo.getGender();
-	                if(userInfo.getGender()=='A') {
-	                	gender='A';
-	                }
-	                System.out.println(id+"\n"+age+"\n"+name+profile_image+gender);
+	                email=userInfo.getEmail();
+	                
+	                System.out.println(id+"\n"+age+"\n"+name+profile_image+gender+email);
 	 
 	//              회원가입 안되어있으면
 	                if(!id.equals(ms.searchMember(id))){
+	               
 	                mvo.setMem_id(id);
+	                mvo.setMem_email(email);
 	                mvo.setMem_name(name);
 	                mvo.setMem_nickname(name);
 	                mvo.setMem_age(age);

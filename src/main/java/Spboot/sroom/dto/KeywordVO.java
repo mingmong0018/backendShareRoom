@@ -6,32 +6,33 @@ import lombok.Data;
 
 @Data
 public class KeywordVO {
-	private int keyword_id; 
-	private String mem_id; 
-	private String keyword_content; 
-	private Timestamp keyword_indate;
-	public int getKeyword_id() {
-		return keyword_id;
+	private int keywordId; 
+	private String memId; 
+	private String keywordContent; 
+	private Timestamp keywordIndate;
+	public int getKeywordId() {
+		return keywordId;
 	}
-	public void setKeyword_id(int keyword_id) {
-		this.keyword_id = keyword_id;
+	public void setKeywordId(int keywordId) {
+		this.keywordId = keywordId;
 	}
-	public String getMem_id() {
-		return mem_id;
+	public String getMemId() {
+		return memId;
 	}
-	public void setMem_id(String mem_id) {
-		this.mem_id = mem_id;
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
-	public String getKeyword_content() {
-		return keyword_content;
+	public String getKeywordContent() {
+		return keywordContent;
 	}
-	public void setKeyword_content(String keyword_content) {
-		this.keyword_content = keyword_content;
+	public void setKeywordContent(String keywordContent) {
+		this.keywordContent = keywordContent;
 	}
-	public Timestamp getKeyword_indate() {
-		return keyword_indate;
+	public Timestamp getKeywordIndate() {
+		return keywordIndate;
 	}
-	public void setKeyword_indate(Timestamp keyword_indate) {
-		this.keyword_indate = keyword_indate;
-	} 
+	public void setKeywordIndate(Timestamp keywordIndate) {
+		this.keywordIndate = keywordIndate;
+	}
+	
 }

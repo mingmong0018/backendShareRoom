@@ -2,8 +2,10 @@ package Spboot.sroom.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import Spboot.sroom.config.interceptor.JwtAuthIntercepter;
 
 @Component
@@ -15,6 +17,12 @@ public class WebConfig implements WebMvcConfigurer{
 	private String[] INTERCEPTOR_WHITE_LIST= {
 			"/login/**","/upload/**",
 	};
+	@Override
+	public void addCorsMappings(CorsRegistry cr) {
+		cr.addMapping("/**")
+		.allowedOrigins("*")
+        .allowedMethods("GET", "POST","DELETE");
+	}
 
 	
 	@Override
@@ -31,7 +39,8 @@ public class WebConfig implements WebMvcConfigurer{
 							"/keyword",
 							"/writer",
 							"/options",
-							"/filterList"
+							"/filterList",
+							"/writer"
 							);
 	}
 }
