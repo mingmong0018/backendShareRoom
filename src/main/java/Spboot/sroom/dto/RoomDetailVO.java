@@ -14,7 +14,6 @@ public class RoomDetailVO {
 	private int room_deposit;
 	private int room_rent;
 	private String room_report;
-	private String room_mem_phone;
 	private Timestamp room_indate;
 	public int getRoom_id() {
 		return room_id;
@@ -63,12 +62,6 @@ public class RoomDetailVO {
 	}
 	public void setRoom_report(String room_report) {
 		this.room_report = room_report;
-	}
-	public String getRoom_mem_phone() {
-		return room_mem_phone;
-	}
-	public void setRoom_mem_phone(String room_mem_phone) {
-		this.room_mem_phone = room_mem_phone;
 	}
 	public Timestamp getRoom_indate() {
 		return room_indate;

@@ -22,7 +22,7 @@
 --drop sequence seq_sr_notify;
 update sr_member set mem_age=0 where mem_id='google_110756038095356896059';
 
-		select * from sr_member where mem_id='google_110756038095356896059';
+select * from sr_member where mem_id='google_110756038095356896059';
 
 update sr_member set mem_nickname='김민정' where mem_id='google_110756038095356896059';
 
@@ -42,11 +42,10 @@ create 	table 	sr_room(	room_id	 number(6) 	primary key,
 			mem_id	 varchar2(50) 	references 	sr_member(mem_id) ,
 			room_title	 varchar2(50 char) 	not null,	
 			room_address	 varchar2(50 char) 	not null,	
-			room_images	 varchar2(100) ,		
+			room_images	 varchar2(1000) ,		
 			room_deposit	 number(10) 	not null,	
 			room_rent	 number(10) 	not null,	
 			room_report	 varchar2(1000 char) ,		
-			room_mem_phone	 varchar2(30) 	not null,	
 			room_indate	 timestamp	 default 	sysdate) ;
 
 create 	sequence	seq_sr_room	increment by 	1;		

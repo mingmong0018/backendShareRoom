@@ -6,7 +6,9 @@ create table member1 (
 insert into member1 values('minjung', '1234');
 insert into member1 values('hana', '1111');
 
-update sr_member set mem_confirm='y' where mem_id='0';
+delete from sr_wish_list
+
+drop sequence seq_sr_room;
 
 update sr_room set mem_id='1' where room_id=1 or room_id=3 or room_id=5 or room_id=7 or room_id=9;
 update sr_room set mem_id='1' where room_id=11 or room_id=13 or room_id=15 or room_id=17 or room_id=19;
@@ -19,13 +21,22 @@ update sr_room set mem_id='1' where room_id=71 or room_id=73 or room_id=75 or ro
 update sr_room set mem_id='1' where room_id=81 or room_id=83 or room_id=85 or room_id=87 or room_id=89;
 update sr_room set mem_id='1' where room_id=91 or room_id=93 or room_id=95 or room_id=97 or room_id=99;
 
-select*from sr_room
+select*from sr_room where mem_id='google_102053069059577066310'
 
 select*from sr_member
 
 select*from sr_wish_list
 
+select*from sr_tag
+
+select room_images from sr_room where mem_id='google_102053069059577066310';
+delete from sr_room where mem_id='google_102053069059577066310';
+
+select*from sr_room_option
+
 select room_id from sr_wish_list where mem_id='google_102053069059577066310'
+
+delete from sr_room where mem_id='google_102053069059577066310'
 
 select a.room_id, a.room_title, a.room_address, a.room_deposit, a.room_rent, a.room_images,
 		b.mem_age, b.mem_gender, b.mem_confirm, c.wish_indate
@@ -70,3 +81,7 @@ select room_id, mem_id, room_title, room_address, room_images, room_deposit,
 		room_rent, room_mem_phone, room_indate, 
 		replace(room_report, chr(13)||chr(10), '<![CDATA[ < ]]>br/<![CDATA[ > ]]>') room_report 
 		from sr_room where room_id=#{param1}
+		
+select*from tables
+
+
