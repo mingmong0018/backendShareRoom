@@ -1,28 +1,28 @@
 --<<모두삭제>>
---drop table sr_member cascade constraints;
---drop table sr_room cascade constraints;
---drop table sr_room_rep cascade constraints;
---drop table sr_room_re_rep cascade constraints;
---drop table sr_option cascade constraints;
---drop table sr_room_option cascade constraints;
---drop table sr_wish_list cascade constraints;
---drop table sr_tag cascade constraints;
---drop table sr_notice cascade constraints;
---drop table sr_notify_group cascade constraints;
---drop table sr_notify cascade constraints;
---drop table sr_keyword cascade constraints;
+drop table sr_member cascade constraints;
+drop table sr_room cascade constraints;
+drop table sr_room_rep cascade constraints;
+drop table sr_room_re_rep cascade constraints;
+drop table sr_option cascade constraints;
+drop table sr_room_option cascade constraints;
+drop table sr_wish_list cascade constraints;
+drop table sr_tag cascade constraints;
+drop table sr_notice cascade constraints;
+drop table sr_notify_group cascade constraints;
+drop table sr_notify cascade constraints;
+drop table sr_keyword cascade constraints;
 
---drop sequence seq_sr_keyword;
---drop sequence seq_sr_member;
---drop sequence seq_sr_room;
---drop sequence seq_sr_room_rep;
---drop sequence seq_sr_room_re_rep;
---drop sequence seq_sr_option;
---drop sequence seq_sr_room_option;
---drop sequence seq_sr_tag;
---drop sequence seq_sr_notice;
---drop sequence seq_sr_notify;
---drop sequence seq_sr_wish_list;
+drop sequence seq_sr_keyword;
+drop sequence seq_sr_member;
+drop sequence seq_sr_room;
+drop sequence seq_sr_room_rep;
+drop sequence seq_sr_room_re_rep;
+drop sequence seq_sr_option;
+drop sequence seq_sr_room_option;
+drop sequence seq_sr_tag;
+drop sequence seq_sr_notice;
+drop sequence seq_sr_notify;
+drop sequence seq_sr_wish_list;
 update sr_member set mem_age=0 where mem_id='google_110756038095356896059';
 
 select * from sr_member where mem_id='google_110756038095356896059';
@@ -51,8 +51,6 @@ create 	table 	sr_room(	room_id	 number(6) 	primary key,
 			room_rent	 number(10) 	not null,	
 			room_report	 varchar2(1000 char) ,		
 			room_indate	 timestamp	 default 	sysdate) ;
-
-create 	sequence	seq_sr_room	increment by 	1;		
 
 select * from sr_room;
 
