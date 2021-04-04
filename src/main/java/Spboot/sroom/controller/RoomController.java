@@ -234,7 +234,7 @@ public class RoomController {
 					}
 				}
 				
-				String url="http://localhost:8070/roomImages/";
+				String url="http://3.35.222.173:8070/roomImages/";
 				String images="";
 				for(int i=0; i<imageUrlArr.size(); i++) {
 					String imageUrl=url+imageUrlArr.get(i)+',';
