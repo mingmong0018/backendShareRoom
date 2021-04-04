@@ -49,11 +49,7 @@ create 	table 	sr_room(	room_id	 number(6) 	primary key,
 			room_images	 varchar2(1000) ,		
 			room_deposit	 number(10) 	not null,	
 			room_rent	 number(10) 	not null,	
-<<<<<<< HEAD
 			room_report	 varchar2(1000 char) ,		
-=======
-			room_report	 varchar2(1000 char) ,			
->>>>>>> a15cade929a3692f59ee2326bc438440d2582b80
 			room_indate	 timestamp	 default 	sysdate) ;
 
 create 	sequence	seq_sr_room	increment by 	1;		
