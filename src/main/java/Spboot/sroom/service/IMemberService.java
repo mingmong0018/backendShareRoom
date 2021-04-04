@@ -6,6 +6,8 @@ import Spboot.sroom.dto.KeywordVO;
 import Spboot.sroom.dto.MemberVO;
 
 public interface IMemberService {
+	public String getEmail(String id);
+	public String getConfirm(String id);
 	public void deleteAllKeyword(String id);
 	public void deleteKeyword(String id,int keyword_id);
 	public List<KeywordVO> getAllKeyword(String id);

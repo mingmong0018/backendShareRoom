@@ -1,6 +1,7 @@
 package Spboot.sroom.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -51,6 +52,22 @@ public class MemberController {
 	@Autowired
 	IUseRedis useRedis;
 	
+	@RequestMapping(value="/memberEmail",method= {RequestMethod.POST})
+	public String memberEmail(@RequestParam(value = "id") String id) {
+		String result=ms.getEmail(id);
+		return result;
+		
+		
+	}
+	
+	@RequestMapping(value="/memberConfirm",method= {RequestMethod.POST})
+	public String memberConfirm(@RequestParam(value = "id") String id) {
+		String result=ms.getConfirm(id);
+		return result;
+		
+		
+	}
+	
 	@RequestMapping(value="/deleteKeyword",method= {RequestMethod.POST})
 	public String deleteKeyword(@RequestParam(value = "id") String id,
 											   @RequestParam(value = "keywordSq") int keyword_id) {
@@ -78,7 +95,11 @@ public class MemberController {
 		KeywordVO kvo=new KeywordVO();
 		kvo.setMemId(id);
 		kvo.setKeywordContent(text);
+		Timestamp now=new Timestamp(System.currentTimeMillis());
+		kvo.setKeywordIndate(now);
 		ms.insertKeyword(kvo);
+		
+		
 		
 	}
 	
@@ -105,7 +126,7 @@ public class MemberController {
 			if(multi.getFilesystemName("image")!=null) {
 				image=multi.getFilesystemName("image");
 				
-				mvo.setMem_image("http://localhost:8070/upload/"+image);
+				mvo.setMem_image("http://3.35.222.173:8070/upload/"+image);
 				ms.updateMember(mvo);
 				System.out.println("이미지 있으");
 			}else {

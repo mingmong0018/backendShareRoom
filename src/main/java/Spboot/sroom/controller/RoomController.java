@@ -154,7 +154,7 @@ public class RoomController {
 				imageUrlArr.add(image_name);
 			}
 			
-			String url="http://localhost:8070/roomImages/";
+			String url="http://3.35.222.173:8070/roomImages/";
 			String images="";
 			for(int i=0; i<imageUrlArr.size(); i++) {
 				String imageUrl=url+imageUrlArr.get(i)+',';
@@ -224,7 +224,7 @@ public class RoomController {
 			if(imageUrlArr.size()>0) {
 				// 기존파일 먼저 삭제
 				for(int i=0; i<roomImages.length; i++) {
-					String roomImage = roomImages[i].replace("http://localhost:8070/roomImages", "");
+					String roomImage = roomImages[i].replace("http://3.35.222.173:8070/roomImages", "");
 					File file=new File(savePath+roomImage);
 					if(file.exists()) {
 						file.delete();
