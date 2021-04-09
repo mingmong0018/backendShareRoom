@@ -8,6 +8,8 @@ insert into member1 values('hana', '1111');
 
 delete from sr_wish_list
 
+select*from sr_option
+
 drop sequence seq_sr_room;
 
 update sr_room set mem_id='1' where room_id=1 or room_id=3 or room_id=5 or room_id=7 or room_id=9;

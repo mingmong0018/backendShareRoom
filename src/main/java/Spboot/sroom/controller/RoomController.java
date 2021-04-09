@@ -257,6 +257,13 @@ public class RoomController {
 		return result;
 	}
 	
+	@DeleteMapping(value="/room")
+	public int deleteRoom(
+			@RequestParam(value = "roomId") String roomId) {
+		int result = rs.deleteRoom(Integer.parseInt(roomId));
+		return result;
+	}
+	
 	@GetMapping(value="/myRoom")
 	public Integer getMyRoom(
 			@RequestParam(value = "id") String mem_id
@@ -265,19 +272,21 @@ public class RoomController {
 		return myRoom;
 	}
 	
-	@GetMapping(value="/filterList")
-	public List<RoomVO> getFilteringList(HttpServletRequest request) {
-		List<RoomVO> list=null;
-        String option = request.getParameter("options");
-        String minDeposit = request.getParameter("minDeposit");
-        String maxDeposit = request.getParameter("maxDeposit");
-        String minRent = request.getParameter("minRent");
-        String maxRent = request.getParameter("maxRent");
-        
-        System.out.print(option+", "+minDeposit+", "+maxDeposit+", "+minRent+", "+maxRent);
-		
-		return list;
-	}
+//	@GetMapping(value="/filterList")
+//	public List<RoomVO> getFilteringList(HttpServletRequest request) {
+//		
+//        String option = request.getParameter("options");
+//        String minDeposit = request.getParameter("minDeposit");
+//        String maxDeposit = request.getParameter("maxDeposit");
+//        String minRent = request.getParameter("minRent");
+//        String maxRent = request.getParameter("maxRent");
+//        
+//        System.out.print(option+", "+minDeposit+", "+maxDeposit+", "+minRent+", "+maxRent);
+//        
+//        List<RoomVO> list=rs.getFilteringList(option, minDeposit, maxDeposit, minRent, maxRent);
+//        
+//		return list;
+//	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {

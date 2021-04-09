@@ -27,4 +27,5 @@ public interface IRoomService {
 	public void updateOption(int roomId, String option);
 	public void insertTag(int roomId, String roomTag);
 	public void updateTag(int roomId, String roomTag);
+	public int deleteRoom(int roomId);
 }

@@ -9,7 +9,6 @@ import Spboot.sroom.dto.RoomDetailVO;
 import Spboot.sroom.dto.RoomOptionVO;
 import Spboot.sroom.dto.RoomTagVO;
 import Spboot.sroom.dto.RoomVO;
-import Spboot.sroom.dto.WishListVO;
 
 @Mapper
 public interface IRoomDao {
@@ -31,4 +30,5 @@ public interface IRoomDao {
 	public void deleteOption(int roomId);
 	public void insertTag(int roomId, String roomTag);
 	public void deleteTag(int roomId);
+	public int deleteRoom(int roomId);
 }

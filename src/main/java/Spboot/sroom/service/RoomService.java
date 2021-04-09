@@ -1,5 +1,6 @@
 package Spboot.sroom.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +145,12 @@ public class RoomService implements IRoomService{
 				rdao.insertTag(roomId, tag);
 			}
 		}
-		
 	}
+
+	@Override
+	public int deleteRoom(int roomId) {
+		int result=rdao.deleteRoom(roomId);
+		return result;
+	}
+
 }

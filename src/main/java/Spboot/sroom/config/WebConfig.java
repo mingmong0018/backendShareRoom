@@ -38,7 +38,6 @@ public class WebConfig implements WebMvcConfigurer{
 							"/keyword",
 							"/writer",
 							"/options",
-							"/filterList",
 							"/writer"
 							);
 	}
