@@ -1,22 +1,22 @@
 insert into sr_option values (seq_sr_option.nextval, 'room', '냉장고'); 
 insert into sr_option values (seq_sr_option.nextval, 'room', '세탁기'); 
-insert into sr_option values (seq_sr_option.nextval, 'room', '책상'); --3
-insert into sr_option values (seq_sr_option.nextval, 'room', '침대'); --4
-insert into sr_option values (seq_sr_option.nextval, 'room', 'TV'); --5
-insert into sr_option values (seq_sr_option.nextval, 'room', '신발장'); --6
-insert into sr_option values (seq_sr_option.nextval, 'room', '에어컨'); --7
-insert into sr_option values (seq_sr_option.nextval, 'room', '전자도어락'); --8
-insert into sr_option values (seq_sr_option.nextval, 'room', '인덕션'); --9
-insert into sr_option values (seq_sr_option.nextval, 'room', '가스레인지'); --10
-insert into sr_option values (seq_sr_option.nextval, 'room', '옷장'); --11
-insert into sr_option values (seq_sr_option.nextval, 'room', '전자레인지'); --12
-insert into sr_option values (seq_sr_option.nextval, 'room', '비데'); --13
-insert into sr_option values (seq_sr_option.nextval, 'room', '정수기'); --14
-insert into sr_option values (seq_sr_option.nextval, 'etc', '반려동물가능'); --15
-insert into sr_option values (seq_sr_option.nextval, 'etc', '주차가능'); --16
-insert into sr_option values (seq_sr_option.nextval, 'etc', 'CCTV'); --17
-insert into sr_option values (seq_sr_option.nextval, 'etc', '화재경보기'); --18
-insert into sr_option values (seq_sr_option.nextval, 'etc', '엘리베이터'); --19
+insert into sr_option values (seq_sr_option.nextval, 'room', '책상'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '침대'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', 'TV'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '신발장'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '에어컨'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '전자도어락'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '인덕션'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '가스레인지'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '옷장'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '전자레인지'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '비데'); 
+insert into sr_option values (seq_sr_option.nextval, 'room', '정수기'); 
+insert into sr_option values (seq_sr_option.nextval, 'etc', '반려동물가능'); 
+insert into sr_option values (seq_sr_option.nextval, 'etc', '주차가능'); 
+insert into sr_option values (seq_sr_option.nextval, 'etc', 'CCTV'); 
+insert into sr_option values (seq_sr_option.nextval, 'etc', '화재경보기'); 
+insert into sr_option values (seq_sr_option.nextval, 'etc', '엘리베이터'); 
 
 select*from sr_option;
 

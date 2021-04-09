@@ -44,6 +44,7 @@ public class RoomController {
 	
 	@RequestMapping(value="/listRoom", method={RequestMethod.GET})
     public List<RoomVO> listAll() {
+		System.out.println("하이");
 		List<RoomVO> rooms = rs.getAllRoom();
 		return rooms;
 	}

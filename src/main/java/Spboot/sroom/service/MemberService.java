@@ -85,7 +85,12 @@ public class MemberService implements IMemberService{
 
 	@Override
 	public void insertKeyword(KeywordVO kvo) {
-		mdao.insertKeyword(kvo);
+		if(mdao.confirmKeyword(kvo)==null) {
+			mdao.insertKeyword(kvo);
+		}else {
+			System.out.println(kvo.getKeywordIndate());
+			mdao.updateKeyword(kvo);
+		}
 		
 	}
 
@@ -104,6 +109,16 @@ public class MemberService implements IMemberService{
 	public void deleteKeyword(String id, int keyword_id) {
 		mdao.deleteKeyword(id,keyword_id);
 		
+	}
+
+	@Override
+	public String getConfirm(String id) {
+		return mdao.getConfirm(id);
+	}
+
+	@Override
+	public String getEmail(String id) {
+		return mdao.getEmail(id);
 	}
 	}
 

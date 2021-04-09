@@ -23,18 +23,9 @@
 		select a.room_id, b.option_id, b.option_group, b.option_name from sr_room_option a, sr_option b 
 		where room_id=#{param1} and a.option_id=b.option_id
 	</select>
-	
-<<<<<<< HEAD
 	<delete id="deleteTag">
 		delete from sr_tag where room_id=#{param1}
 	</delete>
-	
-	<insert id="insertKeyword">
-		insert into sr_keyword(keyword_id, mem_id, keyword_content) values(seq_sr_keyword.nextval, #{param1}, #{param2})
-	</insert>
-=======
-	
->>>>>>> a15cade929a3692f59ee2326bc438440d2582b80
 	
 	<select id="getWishRoom" resultType="Integer">
 		select room_id from sr_wish_list where mem_id=#{param1} and room_id=#{param2}

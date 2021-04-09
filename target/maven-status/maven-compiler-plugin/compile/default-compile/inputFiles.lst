@@ -7,6 +7,7 @@ C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sro
 C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sroom\dto\RoomVO.java
 C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sroom\util\MailHandler.java
 C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sroom\service\IEmailService.java
+C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sroom\dto\OptionVO.java
 C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sroom\service\IRoomService.java
 C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sroom\redis\IUseRedis.java
 C:\Users\kyc01\OneDrive\바탕 화면\PROJECT\ShareRoom\src\main\java\Spboot\sroom\config\interceptor\JwtAuthIntercepter.java

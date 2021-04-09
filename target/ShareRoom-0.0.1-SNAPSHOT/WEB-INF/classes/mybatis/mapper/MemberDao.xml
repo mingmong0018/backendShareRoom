@@ -5,6 +5,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="Spboot.sroom.dao.IMemberDao">
+	<select id="getEmail" resultType="String">
+		select mem_email from sr_member where mem_id=#{param1}
+	</select>
+	<select id="getConfirm" resultType="String">
+		select mem_confirm from sr_member where mem_id=#{param1}
+	</select>
 	<delete id="deleteAllKeyword">
 		delete from sr_keyword where memId=#{param1} 
 	</delete>
@@ -12,7 +18,13 @@
 		delete from sr_keyword where memId=#{param1} and keywordId=#{param2}
 	</delete>
 	<select id="getAllKeyword" resultType="Spboot.sroom.dto.KeywordVO">
-		select * from sr_keyword where memId=#{param1}
+		select * from sr_keyword where memId=#{param1} order by keywordIndate
+	</select>
+	<update id="updateKeyword" parameterType="Spboot.sroom.dto.KeywordVO">
+		update sr_keyword set keywordIndate=#{keywordIndate} where memId=#{memId} and keywordContent=#{keywordContent}
+	</update>
+	<select id="confirmKeyword" resultType="String">
+		select keywordContent from sr_keyword where memId=#{memId} and keywordContent=#{keywordContent}
 	</select>
 	<insert id="insertKeyword">
 		insert into sr_keyword(keywordId, memId, keywordContent) values(seq_sr_keyword.nextval, #{memId}, #{keywordContent})
