@@ -35,11 +35,6 @@ import Spboot.sroom.util.IJwtUtil;
 @RestController
 public class MemberController {
 	
-	@Value("${googleClientSecret}")
-	String googleClientSecret;
-	@Value("${googleApiKey}")
-	String googleApiKey;
-	
 	
 	@Autowired
 	IMemberService ms;
@@ -126,7 +121,7 @@ public class MemberController {
 			if(multi.getFilesystemName("image")!=null) {
 				image=multi.getFilesystemName("image");
 				
-				mvo.setMem_image("http://localhost:8070/upload/"+image);
+				mvo.setMem_image("http://3.36.55.232:8070/upload/"+image);
 				ms.updateMember(mvo);
 				System.out.println("이미지 있으");
 			}else {

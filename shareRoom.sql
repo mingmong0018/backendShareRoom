@@ -28,7 +28,7 @@ update sr_member set mem_age=0 where mem_id='google_110756038095356896059';
 select * from sr_member where mem_id='google_110756038095356896059';
 
 update sr_member set mem_nickname='김민정' where mem_id='google_110756038095356896059';
-
+update sr_member set mem_email=null where mem_id='0';
 select*from sr_member
 
 
