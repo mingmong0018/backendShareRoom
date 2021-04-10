@@ -11,7 +11,6 @@ drop table sr_notice cascade constraints;
 drop table sr_notify_group cascade constraints;
 drop table sr_notify cascade constraints;
 drop table sr_keyword cascade constraints;
-
 drop sequence seq_sr_keyword;
 drop sequence seq_sr_member;
 drop sequence seq_sr_room;

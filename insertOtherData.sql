@@ -732,8 +732,6 @@ update sr_room set mem_id='1' where room_id=91 or room_id=93 or room_id=95 or ro
 select*from sr_room
 =======
 insert into sr_room_option values(seq_sr_room_option.nextval, 90, 16);
-
-
 insert into sr_room_option values (seq_sr_room_option.nextval, 1, 17);
 insert into sr_room_option values (seq_sr_room_option.nextval, 2, 18);
 insert into sr_room_option values (seq_sr_room_option.nextval, 3, 19);
