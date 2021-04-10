@@ -121,7 +121,7 @@ public class MemberController {
 			if(multi.getFilesystemName("image")!=null) {
 				image=multi.getFilesystemName("image");
 				
-				mvo.setMem_image("http://54.180.141.104:8070/upload/"+image);
+				mvo.setMem_image("http://13.125.175.217:8070/upload/"+image);
 				ms.updateMember(mvo);
 				System.out.println("이미지 있으");
 			}else {
