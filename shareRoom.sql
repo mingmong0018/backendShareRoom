@@ -22,7 +22,7 @@ drop sequence seq_sr_tag;
 drop sequence seq_sr_notice;
 drop sequence seq_sr_notify;
 drop sequence seq_sr_wish_list;
-update sr_member set mem_age=0 where mem_id='google_110756038095356896059';
+update sr_member set mem_confirm='n' where mem_id='google_110756038095356896059';
 
 select * from sr_member where mem_id='google_110756038095356896059';
 
@@ -50,10 +50,10 @@ create 	table 	sr_room(	room_id	 number(6) 	primary key,
 			room_rent	 number(10) 	not null,	
 			room_report	 varchar2(1000 char) ,		
 			room_indate	 timestamp	 default 	sysdate) ;
-
+create 	sequence	 seq_sr_room	 start with 1 increment by 1;	
 select * from sr_room;
 
-create 	sequence	 seq_sr_room	 start with 1 increment by 1;	
+
 
 						
 --create 	table 	sr_room_rep(	room_rep_id 	 number(6) 	primary key,	

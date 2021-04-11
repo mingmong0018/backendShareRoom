@@ -28,8 +28,10 @@ public class JwtAuthIntercepter implements HandlerInterceptor{
 			String givenJWT = null;
 			String id = null,redisJWT=null,verifyJWT=null;
 			
-			System.out.println(request.getHeader("Authorization"));
-			
+	
+			response.setHeader("Access-Control-Allow-Origin","*");
+			response.setHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, PUT, DELETE");
+			response.setHeader("Access-Control-Allow-Headers","Authorization,Content-Type");
 			try {	
 			if(((basicConfirm=request.getHeader("Authorization").substring(0, 7)).equals("Bearer "))
 					&&((givenJWT=request.getHeader("Authorization").substring(7))!=null)
@@ -44,7 +46,7 @@ public class JwtAuthIntercepter implements HandlerInterceptor{
 				return false;
 			}
 		}catch(Exception e) {
-			System.out.println("preHandle false2 작동");
+			System.out.println("preHandle false2 작동 : "+e.toString());
 			return false;
 		}
 	}

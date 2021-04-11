@@ -1,6 +1,7 @@
 package Spboot.sroom.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -20,9 +21,10 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry cr) {
 		cr.addMapping("/**")
-		.allowedOrigins("*")
-		.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-		.allowedHeaders("*");
+		.allowedOrigins("http://localhost:8081")
+	    .allowedMethods("POST","GET","OPTIONS","PUT","DELETE");
+		
+		
 	}
 	
 	@Override
