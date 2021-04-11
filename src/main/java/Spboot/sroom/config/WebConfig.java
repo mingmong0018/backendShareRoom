@@ -21,7 +21,7 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry cr) {
 		cr.addMapping("/**")
-		.allowedOrigins("http://localhost:8081")
+		.allowedOrigins("http://shareroom-frontend.s3-website.ap-northeast-2.amazonaws.com")
 	    .allowedMethods("POST","GET","OPTIONS","PUT","DELETE");
 		
 		
