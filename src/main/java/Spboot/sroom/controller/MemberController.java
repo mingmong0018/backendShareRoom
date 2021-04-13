@@ -104,13 +104,13 @@ public class MemberController {
    
    @RequestMapping(value="/updateMember",method= {RequestMethod.POST})
    public String updateMember(HttpServletRequest request) {
-	   HttpSession session = request.getSession();
-	   ServletContext context = session.getServletContext();
-	   String savePath = File.separator+context.getRealPath("upload");
-	   System.out.println("savePath realPath : "+File.separator+context.getRealPath("/"));
-	   System.out.println("savePath : "+savePath);
-//      String savePath=request.getServletContext().getRealPath("upload");
-      System.out.println(request.getContextPath());
+//	   HttpSession session = request.getSession();
+//	   ServletContext context = session.getServletContext();
+//	   String savePath = File.separator+context.getRealPath("upload");
+//	   System.out.println("savePath realPath : "+File.separator+context.getRealPath("/"));
+//	   System.out.println("savePath : "+savePath);
+      String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"src"+File.separator+"main"+File.separator+"webapp"+File.separator+"upload";
+      System.out.println(savePath);
       int sizeLimit=10*1024*1024;
       try {
          MultipartRequest multi=new MultipartRequest(request,savePath,sizeLimit,"UTF-8",new DefaultFileRenamePolicy());
