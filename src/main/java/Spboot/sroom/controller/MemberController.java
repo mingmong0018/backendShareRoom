@@ -6,7 +6,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -101,7 +103,12 @@ public class MemberController {
    
    @RequestMapping(value="/updateMember",method= {RequestMethod.POST})
    public String updateMember(HttpServletRequest request) {
-      String savePath=request.getServletContext().getRealPath("upload");
+	  HttpSession session = request.getSession();
+	  ServletContext context = session.getServletContext();
+	  String savePath = context.getRealPath("upload");
+	  System.out.println("savePath : "+request.getServletContext().getRealPath("upload"));
+	  System.out.println("savePathSesstion : "+session.getServletContext().getRealPath("upload"));
+//      String savePath=request.getServletContext().getRealPath("upload");
       System.out.println(request.getContextPath());
       int sizeLimit=10*1024*1024;
       try {
