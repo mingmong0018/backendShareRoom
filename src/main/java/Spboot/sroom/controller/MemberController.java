@@ -1,5 +1,6 @@
 package Spboot.sroom.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -103,11 +104,10 @@ public class MemberController {
    
    @RequestMapping(value="/updateMember",method= {RequestMethod.POST})
    public String updateMember(HttpServletRequest request) {
-	  HttpSession session = request.getSession();
-	  ServletContext context = session.getServletContext();
-	  String savePath = context.getRealPath("upload");
-	  System.out.println("savePath : "+request.getServletContext().getRealPath("upload"));
-	  System.out.println("savePathSesstion : "+session.getServletContext().getRealPath("upload"));
+	   HttpSession session = request.getSession();
+	   ServletContext context = session.getServletContext();
+	   String savePath = File.separator+context.getRealPath("upload");
+	   System.out.println("savePath : "+savePath);
 //      String savePath=request.getServletContext().getRealPath("upload");
       System.out.println(request.getContextPath());
       int sizeLimit=10*1024*1024;
