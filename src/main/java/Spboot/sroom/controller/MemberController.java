@@ -109,7 +109,7 @@ public class MemberController {
 //	   String savePath = File.separator+context.getRealPath("upload");
 //	   System.out.println("savePath realPath : "+File.separator+context.getRealPath("/"));
 //	   System.out.println("savePath : "+savePath);
-      String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"bin"+File.separator+"src"+File.separator+"main"+File.separator+"webapp"+File.separator+"upload"+File.separator;
+      String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"bin"+File.separator+"target"+File.separator+"ShareRoom-0.0.1-SNAPSHOT"+File.separator+"upload"+File.separator;
       System.out.println(savePath);
       int sizeLimit=10*1024*1024;
       try {
