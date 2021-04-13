@@ -1,7 +1,9 @@
 package Spboot.sroom.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
@@ -11,8 +13,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.file.ConfigurationSource.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -109,7 +113,7 @@ public class MemberController {
 //	   String savePath = File.separator+context.getRealPath("upload");
 //	   System.out.println("savePath realPath : "+File.separator+context.getRealPath("/"));
 //	   System.out.println("savePath : "+savePath);
-      String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"bin"+File.separator+"target"+File.separator+"ShareRoom-0.0.1-SNAPSHOT"+File.separator+"upload"+File.separator;
+	   String savePath= this.getClass().getResource("/").getPath();	
       System.out.println(savePath);
       int sizeLimit=10*1024*1024;
       try {
@@ -129,7 +133,7 @@ public class MemberController {
          
          if(multi.getFilesystemName("image")!=null) {
             image=multi.getFilesystemName("image");
-           
+            
             mvo.setMem_image("http://3.34.142.121:8070/upload/"+image);
             ms.updateMember(mvo);
             System.out.println("이미지 있으");
