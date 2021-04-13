@@ -129,7 +129,8 @@ public class RoomController {
 
    @PostMapping(value="/room")
    public String insertRoom(HttpServletRequest request) {
-      String savePath=request.getServletContext().getRealPath("roomImages");
+	   String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"src"+File.separator+"main"+File.separator+"webapp"+File.separator+"roomImages"+File.separator;
+	   System.out.println(savePath);
       System.out.println(request.getContextPath());
       int sizeLimit=1024*1024*1024;
       Integer roomId=null;
@@ -191,7 +192,8 @@ public class RoomController {
    
    @PutMapping(value="/room")
    public int updateRoom(HttpServletRequest request) {
-      String savePath=request.getServletContext().getRealPath("roomImages");
+	   String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"src"+File.separator+"main"+File.separator+"webapp"+File.separator+"roomImages"+File.separator;
+	   System.out.println(savePath);
       int sizeLimit=1024*1024*1024;
       int result=0;
       try {
