@@ -107,6 +107,7 @@ public class MemberController {
 	   HttpSession session = request.getSession();
 	   ServletContext context = session.getServletContext();
 	   String savePath = File.separator+context.getRealPath("upload");
+	   System.out.println("savePath realPath : "+File.separator+context.getRealPath("/"));
 	   System.out.println("savePath : "+savePath);
 //      String savePath=request.getServletContext().getRealPath("upload");
       System.out.println(request.getContextPath());
