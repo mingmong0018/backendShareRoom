@@ -10,6 +10,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +36,8 @@ import Spboot.sroom.service.IRoomService;
 
 @RestController
 public class RoomController {
+	@Value("${custom.path.upload-images}")
+	String uploadImagesPath;
 
    @Autowired
    IRoomService rs;
@@ -129,7 +132,7 @@ public class RoomController {
 
    @PostMapping(value="/room")
    public String insertRoom(HttpServletRequest request) {
-	   String savePath= "/home/ubuntu/Shareroom/src/main/webapp/upload/room/";	
+	   String savePath= uploadImagesPath+"room/";	
 	   System.out.println(savePath);
       System.out.println(request.getContextPath());
       int sizeLimit=1024*1024*1024;
@@ -192,7 +195,7 @@ public class RoomController {
    
    @PutMapping(value="/room")
    public int updateRoom(HttpServletRequest request) {
-	   String savePath= "/home/ubuntu/Shareroom/src/main/webapp/upload/room/";	
+	   String savePath= uploadImagesPath+"room/";	
       int sizeLimit=1024*1024*1024;
       int result=0;
       try {

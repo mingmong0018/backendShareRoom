@@ -43,6 +43,9 @@ import Spboot.sroom.util.IJwtUtil;
 @RestController
 public class MemberController {
    
+	@Value("${custom.path.upload-images}")
+	String uploadImagesPath;
+
    
    @Autowired
    IMemberService ms;
@@ -108,12 +111,7 @@ public class MemberController {
    
    @RequestMapping(value="/updateMember",method= {RequestMethod.POST})
    public String updateMember(HttpServletRequest request) {
-//	   HttpSession session = request.getSession();
-//	   ServletContext context = session.getServletContext();
-//	   String savePath = File.separator+context.getRealPath("upload");
-//	   System.out.println("savePath realPath : "+File.separator+context.getRealPath("/"));
-//	   System.out.println("savePath : "+savePath);
-	   String savePath= "/home/ubuntu/Shareroom/src/main/webapp/upload/profile/";	
+	  String savePath= uploadImagesPath+"profile/";	
       System.out.println(savePath);
       int sizeLimit=10*1024*1024;
       try {
@@ -122,7 +120,10 @@ public class MemberController {
          char gender=multi.getParameter("gender").charAt(0);
          int age=Integer.parseInt(multi.getParameter("age"));
          String nickname=multi.getParameter("nickname");
-         String email=multi.getParameter("email");
+         String email="";
+         if(multi.getParameter("email")!=null) {
+            email=multi.getParameter("email");
+         }
          String image=null;
          MemberVO mvo=new MemberVO();
          mvo.setMem_id(id);
@@ -130,30 +131,36 @@ public class MemberController {
          mvo.setMem_nickname(nickname);
          mvo.setMem_gender(gender);
          mvo.setMem_age(age);
+         MemberVO mem = ms.getMember(id);
          
+         String memImage = mem.getMem_image().replace("http://3.34.142.121:8070/upload/profile/", "");
+         File file=new File(savePath+memImage);
+	         if(file.exists()) {
+	            file.delete();
+	            System.out.print("파일 삭제 성공");
+	         }else {
+	            System.out.print("파일이 존재하지 않습니다");
+	         }
          if(multi.getFilesystemName("image")!=null) {
             image=multi.getFilesystemName("image");
             
-            mvo.setMem_image("http://3.34.142.121:8070/upload/profile"+image);
+            mvo.setMem_image("http://3.34.142.121:8070/upload/profile/"+image);
             ms.updateMember(mvo);
-            System.out.println("이미지 있으");
+            System.out.println("이미지 O");
          }else {
             ms.updateMemberWithOutImage(mvo);
-            System.out.println("이미지 없으");
+            System.out.println("이미지 X");
          }
       } catch (IOException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
-      
-      System.out.println("나 작동됐니..?");
       return "success";
    }
    
    @CrossOrigin("*")
    @GetMapping(value="/getMember")
    public MemberVO getMember(@RequestParam(value = "id") String id) {
-      System.out.println("나 작동됐니..?222");
       return ms.getMember(id);
    }
    
