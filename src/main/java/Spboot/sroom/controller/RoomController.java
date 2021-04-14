@@ -129,8 +129,8 @@ public class RoomController {
 
    @PostMapping(value="/room")
    public String insertRoom(HttpServletRequest request) {
-	   String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"bin"+File.separator+"target"+File.separator+"ShareRoom-0.0.1-SNAPSHOT"+File.separator+"roomImages"+File.separator;
-	      System.out.println(savePath);
+	   String savePath= this.getClass().getResource("/").getPath().replaceAll("/target/ShareRoom-0.0.1-SNAPSHOT.war!/WEB-INF/classes!/","/src/main/webapp/upload/room/");	
+	   System.out.println(savePath);
       System.out.println(request.getContextPath());
       int sizeLimit=1024*1024*1024;
       Integer roomId=null;
@@ -155,7 +155,7 @@ public class RoomController {
             imageUrlArr.add(image_name);
          }
          
-         String url="http://3.34.142.121:8070/roomImages/";
+         String url="http://3.34.142.121:8070/upload/room/";
          String images="";
          for(int i=0; i<imageUrlArr.size(); i++) {
             String imageUrl=url+imageUrlArr.get(i)+',';
@@ -192,7 +192,7 @@ public class RoomController {
    
    @PutMapping(value="/room")
    public int updateRoom(HttpServletRequest request) {
-	   String savePath=File.separator+"home"+File.separator+"ubuntu"+File.separator+"Shareroom"+File.separator+"bin"+File.separator+"target"+File.separator+"ShareRoom-0.0.1-SNAPSHOT"+File.separator+"roomImages"+File.separator;
+	   String savePath= this.getClass().getResource("/").getPath().replaceAll("/target/ShareRoom-0.0.1-SNAPSHOT.war!/WEB-INF/classes!/","/src/main/webapp/upload/room/");	
 	      System.out.println(savePath);
       int sizeLimit=1024*1024*1024;
       int result=0;
@@ -226,7 +226,7 @@ public class RoomController {
          if(imageUrlArr.size()>0) {
             // 기존파일 먼저 삭제
             for(int i=0; i<roomImages.length; i++) {
-               String roomImage = roomImages[i].replace("http://3.34.142.121:8070/roomImages", "");
+               String roomImage = roomImages[i].replace("http://3.34.142.121:8070/upload/room", "");
                File file=new File(savePath+roomImage);
                if(file.exists()) {
                   file.delete();
@@ -236,7 +236,7 @@ public class RoomController {
                }
             }
             
-            String url="http://3.34.142.121:8070/roomImages/";
+            String url="http://3.34.142.121:8070/upload/room/";
             String images="";
             for(int i=0; i<imageUrlArr.size(); i++) {
                String imageUrl=url+imageUrlArr.get(i)+',';
