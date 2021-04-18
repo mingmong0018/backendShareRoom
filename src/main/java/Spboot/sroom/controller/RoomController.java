@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import Spboot.sroom.dto.BestTagVO;
 import Spboot.sroom.dto.MemberVO;
 import Spboot.sroom.dto.OptionVO;
 import Spboot.sroom.dto.RoomDetailVO;
@@ -44,6 +45,20 @@ public class RoomController {
    
    @Autowired
    IMemberService ms;
+   
+   @RequestMapping(value="/bestTag", method= {RequestMethod.GET})
+   public List<BestTagVO> getBestTags() {
+      List<BestTagVO> bestTag=rs.getBestTags();
+      return bestTag;
+   }
+   
+   @RequestMapping(value="/tagListRoom", method={RequestMethod.GET})
+    public List<RoomVO> listRoomByTag(
+          @RequestParam(value = "tag") String tag
+          ) {
+      List<RoomVO> rooms = rs.getListRoomByTag(tag);
+      return rooms;
+   }
    
    @RequestMapping(value="/listRoom", method={RequestMethod.GET})
     public List<RoomVO> listAll() {

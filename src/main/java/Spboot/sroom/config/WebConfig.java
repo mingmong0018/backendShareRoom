@@ -54,7 +54,9 @@ public class WebConfig implements WebMvcConfigurer{
 							"/keyword",
 							"/writer",
 							"/options",
-							"/writer"
+							"/writer",
+							"/bestTag",
+							"/tagListRoom"
 							);
 	}
 	@Override

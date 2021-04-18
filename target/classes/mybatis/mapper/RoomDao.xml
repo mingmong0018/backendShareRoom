@@ -5,6 +5,17 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="Spboot.sroom.dao.IRoomDao">
+	<select id="getBestTags" resultType="Spboot.sroom.dto.BestTagVO">
+      select*from(select tag_content, count(*) cnt from sr_tag group by tag_content order by cnt desc) where rownum&lt;=10
+    </select>
+   
+   <select id="getTagRoomsList" resultType="Spboot.sroom.dto.RoomTagVO">
+      select*from sr_tag where tag_content=#{param1}
+   </select>
+   
+   <select id="getTagRoom" resultType="Spboot.sroom.dto.RoomVO">
+      select*from sr_room where room_id=#{param1}
+   </select>
 	<select id="getAllRoom" resultType="Spboot.sroom.dto.RoomVO">
 		select a.room_id, a.room_title, a.room_address, a.room_deposit, a.room_rent, a.room_images,
 		b.mem_age, b.mem_gender, b.mem_confirm

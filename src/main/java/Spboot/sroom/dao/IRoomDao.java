@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import Spboot.sroom.dto.BestTagVO;
 import Spboot.sroom.dto.OptionVO;
 import Spboot.sroom.dto.RoomDetailVO;
 import Spboot.sroom.dto.RoomOptionVO;
@@ -12,6 +13,9 @@ import Spboot.sroom.dto.RoomVO;
 
 @Mapper
 public interface IRoomDao {
+	public List<BestTagVO> getBestTags();
+	public List<RoomTagVO> getTagRoomsList(String tag);
+	public RoomVO getTagRoom(int room_id);
 	public List<RoomVO> getAllRoom();
 	public RoomDetailVO getRoom(int roomId);
 	public List<RoomTagVO> getRoomTag(int roomId);

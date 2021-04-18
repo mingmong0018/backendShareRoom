@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Spboot.sroom.dao.IRoomDao;
+import Spboot.sroom.dto.BestTagVO;
 import Spboot.sroom.dto.OptionVO;
 import Spboot.sroom.dto.RoomDetailVO;
 import Spboot.sroom.dto.RoomOptionVO;
@@ -152,5 +153,26 @@ public class RoomService implements IRoomService{
 		int result=rdao.deleteRoom(roomId);
 		return result;
 	}
+	@Override
+	   public List<BestTagVO> getBestTags() {
+	      List<BestTagVO> bestTag = rdao.getBestTags();
+	      return bestTag;
+	   }
+
+	   @Override
+	   public List<RoomVO> getListRoomByTag(String tag) {
+	      // 해당 태그 리스트 조회
+	      List<RoomTagVO> tagRooms = rdao.getTagRoomsList(tag);
+	      
+	      List<RoomVO> list = new ArrayList<RoomVO>();
+	      
+	      // 방번호로 방 리스트 조회
+	      for(RoomTagVO tag_room : tagRooms) {
+	         RoomVO room=rdao.getTagRoom(tag_room.getRoom_id());
+	         list.add(room);
+	      }
+	      
+	      return list;
+	   }
 
 }

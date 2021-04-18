@@ -2,6 +2,7 @@ package Spboot.sroom.service;
 
 import java.util.List;
 
+import Spboot.sroom.dto.BestTagVO;
 import Spboot.sroom.dto.MemberVO;
 import Spboot.sroom.dto.OptionVO;
 import Spboot.sroom.dto.RoomDetailVO;
@@ -10,6 +11,8 @@ import Spboot.sroom.dto.RoomTagVO;
 import Spboot.sroom.dto.RoomVO;
 
 public interface IRoomService {
+	public List<BestTagVO> getBestTags();
+	public List<RoomVO> getListRoomByTag(String tag);
 	public List<RoomVO> getAllRoom();
 	public RoomDetailVO getRoom(int roomId);
 	public List<RoomTagVO> getRoomTag(int roomId);
