@@ -136,7 +136,7 @@ public class RoomService implements IRoomService{
 
 	@Override
 	public void updateTag(int roomId, String roomTag) {
-		if(roomTag=="") {
+		if(roomTag==""||roomTag==null||roomTag.isEmpty()) {
 			rdao.deleteTag(roomId);
 		}else {
 			rdao.deleteTag(roomId);

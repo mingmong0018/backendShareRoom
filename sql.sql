@@ -8,6 +8,8 @@ insert into member1 values('hana', '1111');
 
 delete from sr_wish_list
 
+select*from(select tag_content, count(*) cnt from sr_tag group by tag_content order by cnt desc) where rownum<=10
+
 select*from sr_option
 
 drop sequence seq_sr_room;
