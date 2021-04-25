@@ -6,15 +6,15 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-	String mem_id;
-	String mem_email;
-	String mem_name;	
-	int mem_age;
-	String mem_nickname;
-	String mem_image;		
-	char mem_gender;
-	String mem_confirm;
-	Timestamp mem_indate;
+	private String mem_id;
+	private String mem_email;
+	private String mem_name;	
+	private int mem_age;
+	private String mem_nickname;
+	private String mem_image;		
+	private char mem_gender;
+	private String mem_confirm;
+	private Timestamp mem_indate;
 	
 	public String getMem_email() {
 		return mem_email;
