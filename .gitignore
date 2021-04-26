@@ -32,4 +32,7 @@ build/
 .vscode/
 
 ###Settings###
-
+application.properties
+sql.sql
+insertOtherData.sql
+insertRoomData.sql
