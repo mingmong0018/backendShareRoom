@@ -104,4 +104,11 @@
 	<delete id="deleteRoom">
 		delete from sr_room where room_id=#{param1}
 	</delete>
+	<delete id="deleteRoomOption">
+      delete from sr_room_option where room_id=#{param1}
+   </delete>
+   
+   <delete id="deleteRoomTag">
+      delete from sr_tag where room_id=#{param1}
+   </delete>
 </mapper>

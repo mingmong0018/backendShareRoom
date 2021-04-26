@@ -149,10 +149,22 @@ public class RoomService implements IRoomService{
 	}
 
 	@Override
-	public int deleteRoom(int roomId) {
-		int result=rdao.deleteRoom(roomId);
-		return result;
-	}
+	   public int deleteRoom(int roomId) {
+	      int result=0;
+	      int result1=rdao.deleteRoomOption(roomId);
+	      int result2=rdao.deleteRoomTag(roomId);
+	      if(result1>0&&result2>0) {
+	         int result3=rdao.deleteRoom(roomId);
+	         if(result3>0) {
+	            result=1;
+	         }else {
+	            System.out.print("방 삭제 실패"+result3);
+	         }
+	      }else {
+	         System.out.print("옵션/태그 삭제 실패"+result1+result2);
+	      }
+	      return result;
+	   }
 	@Override
 	   public List<BestTagVO> getBestTags() {
 	      List<BestTagVO> bestTag = rdao.getBestTags();
