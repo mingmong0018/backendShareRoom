@@ -34,7 +34,6 @@ Rest API를 구현하고자 노력했습니다.
 ### Authorization
 * JWT(JSON Web Token)
 * Oauth 2.0
-* Redis
 
 ### 프로젝트 기능
 
