@@ -110,32 +110,6 @@ Rest API를 구현하고자 노력했습니다.
         return token;
    }  
    ```
-  redis 설정
-  ```Java
-  @Configuration
-  @EnableRedisRepositories
-  public class RedisConfiguration{
-  
-   @Autowired
-   //redis에 설정한 값 불러오기
-   private RedisProperties redisProperties;
-    
-    @Bean
-    public RedisConnectionFactory redisConnectionFactory() {
-        LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(redisProperties.getHost(),redisProperties.getPort());
-        lettuceConnectionFactory.setPassword(redisProperties.getPassword());
-        lettuceConnectionFactory.setTimeout(600000);
-        return lettuceConnectionFactory;
-    }
-    
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate() {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory());
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        return redisTemplate;
-    }
-  }
 
 + 주요 기능
   + 방(Room) 조회
